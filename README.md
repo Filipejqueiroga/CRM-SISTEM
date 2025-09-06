@@ -1,2 +1,3 @@
-# CRM SISTEM
- Final project of the OOP course
+# Sistema CRM
+
+Este é um sistema de **Gestão de Relacionamento com o Cliente (CRM)** desenvolvido como projeto final de POO.
