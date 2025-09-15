@@ -1,3 +1,3 @@
-public class Gym {
-
+public class Gym extends Franchise{
+    
 }
