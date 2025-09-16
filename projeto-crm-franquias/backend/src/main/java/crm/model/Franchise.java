@@ -4,7 +4,7 @@ public class Franchise {
     String city;
     String status;
 
-    Franchise (int id, String name, String city, String status){
+    public Franchise (int id, String name, String city, String status){
         this.id = id;
         this.name = name;
         this.city = city;
