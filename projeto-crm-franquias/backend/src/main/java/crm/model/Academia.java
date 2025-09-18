@@ -1,16 +1,16 @@
 public class Academia extends Franquia {
-    String registro_entrada;
+    private String checkin;
 
-    public Academia(int id, String nome, String cidade, String status, String registro_entrada) {
+    public Academia(int id, String nome, String cidade, String status, String checkin) {
         super(id, nome, cidade, status);
-        this.registro_entrada = registro_entrada;
+        this.checkin = checkin;
     }
 
-    public String getRegistro_entrada() {
-        return this.registro_entrada;
+    public String getCheckin() {
+        return this.checkin;
     }
 
-    public void setRegistro_entrada(String registro_entrada) {
-        this.registro_entrada = registro_entrada;
+    public void setCheckin(String checkin) {
+        this.checkin = checkin;
     }
 }

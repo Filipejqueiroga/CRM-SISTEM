@@ -1,8 +1,8 @@
 public class Franquia {
-    int id;
-    String nome;
-    String cidade;
-    String status;
+    private int id;
+    private String nome;
+    private  String cidade;
+    private String status;
 
     public Franquia(int id, String nome, String cidade, String status) {
         this.id = id;

@@ -1,10 +1,10 @@
-public class PotencialCliente {
+public class Lead {
 
     private String nome;
     private String numero_telefone;
     private String status;
 
-    public PotencialCliente(String nome, String numero_telefone, String status) {
+    public Lead(String nome, String numero_telefone, String status) {
         this.nome = nome;
         this.numero_telefone = numero_telefone;
         this.status = status;
