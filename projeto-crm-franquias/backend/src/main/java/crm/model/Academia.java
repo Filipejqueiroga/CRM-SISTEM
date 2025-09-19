@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+package src.main.java.crm.model;
+
+=======
+>>>>>>> develop
 public class Academia extends Franquia {
     private String checkin;
 
