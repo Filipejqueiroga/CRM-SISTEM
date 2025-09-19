@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package src.main.java.crm.model;
 
 import java.util.ArrayList;
@@ -32,4 +33,8 @@ public class Main {
         relatorio.relatorioGeral(franquias, clientes, vendas, leads);
 
     }
+=======
+public class Main {
+    
+>>>>>>> develop
 }

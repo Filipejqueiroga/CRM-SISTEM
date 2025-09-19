@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package src.main.java.crm.model;
 
+=======
+>>>>>>> develop
 public class Franquia {
     private int id;
     private String nome;

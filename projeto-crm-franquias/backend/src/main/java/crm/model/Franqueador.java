@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package src.main.java.crm.model;
 
+=======
+>>>>>>> develop
 public class Franqueador extends Usuario {
     
     private String nome_empresa;
