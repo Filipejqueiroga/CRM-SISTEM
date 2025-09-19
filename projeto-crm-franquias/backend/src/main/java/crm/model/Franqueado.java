@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-package src.main.java.crm.model;
-
-=======
->>>>>>> develop
 public class Franqueado extends Usuario {
     private String nome_franquia;
 
