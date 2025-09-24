@@ -1,4 +1,4 @@
-package crm;
+package com.crm.franquias.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,3 +1,5 @@
+package com.crm.franquias.model;
+
 public class Franqueado extends Usuario {
     private String nome_franquia;
 

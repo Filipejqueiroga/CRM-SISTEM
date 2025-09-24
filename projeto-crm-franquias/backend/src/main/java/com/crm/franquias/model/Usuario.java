@@ -1,3 +1,5 @@
+package com.crm.franquias.model;
+
 public class Usuario {
     private int id;
     private String email;

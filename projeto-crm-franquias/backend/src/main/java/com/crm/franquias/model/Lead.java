@@ -1,3 +1,5 @@
+package com.crm.franquias.model;
+
 public class Lead {
 
     private String nome;

@@ -1,1 +1,14 @@
 crm\DatabaseSetup.class
+ClienteDAO.class
+Cliente.class
+Franqueador.class
+Usuario.class
+Venda.class
+Main.class
+Academia.class
+Lead.class
+Relatorio.class
+VendaDAO.class
+Franqueado.class
+LeadDAO.class
+Franquia.class

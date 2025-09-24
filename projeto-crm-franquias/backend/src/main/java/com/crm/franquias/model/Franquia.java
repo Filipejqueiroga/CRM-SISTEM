@@ -1,3 +1,5 @@
+package com.crm.franquias.model;
+
 public class Franquia {
     private int id;
     private String nome;

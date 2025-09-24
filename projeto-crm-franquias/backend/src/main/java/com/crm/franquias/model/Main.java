@@ -1,3 +1,5 @@
+package com.crm.franquias.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
