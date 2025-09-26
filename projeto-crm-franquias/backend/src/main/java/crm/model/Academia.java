@@ -1,3 +1,5 @@
+package crm.model;
+
 public class Academia extends Franquia {
     private String checkin;
 

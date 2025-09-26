@@ -1,3 +1,5 @@
+package crm.model;
+
 public class Lead {
 
     private String nome;

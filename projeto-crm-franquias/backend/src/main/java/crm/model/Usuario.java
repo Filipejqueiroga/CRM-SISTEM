@@ -1,3 +1,5 @@
+package crm.model;
+
 public class Usuario {
     private int id;
     private String email;

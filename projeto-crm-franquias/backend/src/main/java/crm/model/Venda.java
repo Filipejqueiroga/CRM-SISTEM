@@ -1,3 +1,5 @@
+package crm.model;
+
 public class Venda {
 
     private int id;
