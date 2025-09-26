@@ -17,7 +17,9 @@ public class DatabaseSetup {
                 stmt.execute("""
                     CREATE TABLE IF NOT EXISTS Franquia (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome TEXT NOT NULL
+                        nome TEXT NOT NULL,
+                        cidade TEXT NOT NULL,
+                        status TEXT NOT NULL
                     );
                 """);
 
@@ -25,17 +27,21 @@ public class DatabaseSetup {
                     CREATE TABLE IF NOT EXISTS Cliente (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         nome TEXT NOT NULL,
-                        franquia_id INTEGER,
-                        FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
+                        numero_telefone TEXT NOT NULL,
+                        tipo_plano TEXT NOT NULL,
+                        id_franquia INTEGER,
+                        FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
                     );
                 """);
 
                 stmt.execute("""
                     CREATE TABLE IF NOT EXISTS Usuario (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome TEXT NOT NULL,
-                        franquia_id INTEGER,
-                        FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
+                        email TEXT NOT NULL,
+                        nome_usuario TEXT NOT NULL,
+                        senha TEXT NOT NULL,
+                        id_franquia INTEGER,
+                        FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
                     );
                 """);
 
@@ -43,17 +49,18 @@ public class DatabaseSetup {
                     CREATE TABLE IF NOT EXISTS Lead (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         nome TEXT NOT NULL,
-                        cliente_id INTEGER,
-                        FOREIGN KEY(cliente_id) REFERENCES Cliente(id)
+                        numero_telefone TEXT NOT NULL,
+                        status TEXT NOT NULL
                     );
                 """);
 
                 stmt.execute("""
                     CREATE TABLE IF NOT EXISTS Venda (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        cliente_id INTEGER,
+                        id_cliente INTEGER,
+                        descricao TEXT NOT NULL,
                         valor REAL,
-                        FOREIGN KEY(cliente_id) REFERENCES Cliente(id)
+                        FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
                     );
                 """);
 
@@ -63,47 +70,53 @@ public class DatabaseSetup {
                         cliente_id INTEGER,
                         usuario_id INTEGER,
                         data TEXT,
+                        hora TEXT,
                         FOREIGN KEY(cliente_id) REFERENCES Cliente(id),
                         FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
                     );
                 """);
 
-                stmt.execute("INSERT INTO Franquia (nome) VALUES ('Franquia A'), ('Franquia B');");
+                stmt.execute("INSERT INTO Franquia (nome, cidade, status) VALUES ('Franquia A', 'Cidade A', 'Ativa'), ('Franquia B', 'Cidade B', 'Ativa');");
 
                 stmt.execute("""
-                    INSERT INTO Cliente (nome, franquia_id) VALUES
-                    ('Cliente 1', 1),
-                    ('Cliente 2', 1),
-                    ('Cliente 3', 2),
-                    ('Cliente 4', 2),
-                    ('Cliente 5', 1);
+                INSERT INTO Cliente (nome, numero_telefone, tipo_plano, id_franquia) VALUES
+                    ('Filipe', '83 8768-3922', 'anual', 1),
+                    ('Pedro', '83 8768-3922', 'anual', 1),
+                    ('Gabriela', '83 8768-3922', 'anual', 1),
+                    ('Bruno', '83 8768-3922', 'semestral', 1),
+                    ('Rebeca', '83 8768-3922', 'semestral', 1);
                 """);
 
                 stmt.execute("""
-                    INSERT INTO Usuario (nome, franquia_id) VALUES
-                    ('Usuario 1', 1),
-                    ('Usuario 2', 2);
+                INSERT INTO Usuario (email, nome_usuario, senha) VALUES
+                    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123'),
+                    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456'),
+                    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789'),
+                    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101'),
+                    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212');
                 """);
 
                 stmt.execute("""
-                    INSERT INTO Venda (cliente_id, valor) VALUES
-                    (1, 100.0),
-                    (2, 200.5),
-                    (3, 150.75);
+              INSERT INTO Venda (id_cliente, descricao, valor) VALUES
+                (1, 'Pagamento do plano anual - 2025', 1200.00),
+                (2, 'Compra de suplemento (Whey Protein)', 189.90),
+                (4, 'Pagamento do plano semestral - 2º Sem/2025', 650.00),
+                (3, 'Taxa de avaliação física', 80.00),
+                (5, 'Compra de luvas e coqueteleira', 75.50);
                 """);
 
                 stmt.execute("""
-                    INSERT INTO Lead (nome, cliente_id) VALUES
-                    ('Lead X', 1),
-                    ('Lead Y', 2),
-                    ('Lead Z', 3);
+                    INSERT INTO Lead (nome, numero_telefone, status) VALUES
+                    ('belarmino', '83 8768-3922','satisfeito'),
+                    ('thais', '83 8768-3922','satisfeito'),
+                    ('lincoln', '83 8768-3922','satisfeito');
                 """);
 
                 stmt.execute("""
-                    INSERT INTO Checkin (cliente_id, usuario_id, data) VALUES
-                    (1, 1, '2025-09-19'),
-                    (2, 1, '2025-09-18'),
-                    (3, 2, '2025-09-17');
+                    INSERT INTO Checkin (cliente_id, usuario_id, data, hora) VALUES
+                    (1, 1, '19/09/2025', '15:22'),
+                    (2, 1, '19/09/2025', '09:56'),
+                    (3, 2, '19/09/2025', '14:29');
                 """);
 
                 System.out.println("Banco criado e populado com sucesso!");
