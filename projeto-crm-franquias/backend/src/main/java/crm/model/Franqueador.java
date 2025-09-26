@@ -4,8 +4,8 @@ public class Franqueador extends Usuario {
     
     private String nome_empresa;
 
-    public Franqueador(int id, String email, String nome_usuario, String senha, String nome_empresa) {
-        super(id, email, nome_usuario, senha);
+    public Franqueador(int id, String email, String nome_usuario, String senha, String nome_empresa, int id_franquia) {
+        super(id, email, nome_usuario, senha, id_franquia);
         this.nome_empresa = nome_empresa;
     }
 

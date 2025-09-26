@@ -10,19 +10,19 @@ public class Main {
         List<Venda> vendas = new ArrayList<>();
         List<Lead> leads = new ArrayList<>();
 
-        franquias.add(new Franquia(001, "Selfit", "Joao Pessoa", "Ativa"));
-        franquias.add(new Franquia(002, "Selfit", "Cabedelo", "Ativa"));
-        franquias.add(new Franquia(003, "Selfit", "Bayeux", "Ativa"));
+        franquias.add(new Franquia(001, "Selfit", "Joao Pessoa", "Ativa", "Academia"));
+        franquias.add(new Franquia(002, "Selfit", "Cabedelo", "Ativa", "Academia"));
+        franquias.add(new Franquia(003, "Selfit", "Bayeux", "Ativa", "Academia"));
 
         clientes.add(new Cliente(123, "Rebeca", "4002-8922", "Mensal", 002));
         clientes.add(new Cliente(1357, "Pedro", "0800-0800", "Trimestral", 001));
         clientes.add(new Cliente(12345, "Juscelino", "1234-5678", "Mensal", 003));
 
-        vendas.add(new Venda(111, 123, "pagamento plano mensal", 200.00));
-        vendas.add(new Venda(222, 1357, "pagamento plano trimestral", 500.00));
-        vendas.add(new Venda(333, 12345, "pagamento plano mennsal", 200.00));
+        vendas.add(new Venda(111, 123, "pagamento plano mensal", 200.00, ""));
+        vendas.add(new Venda(222, 1357, "pagamento plano trimestral", 500.00, ""));
+        vendas.add(new Venda(333, 12345, "pagamento plano mennsal", 200.00, "19/07/2006"));
         
-        leads.add(new Lead("Bruno", "2323-4545", "Interessado"));
+        leads.add(new Lead(2,"Bruno", "2323-4545", "Interessado"));
 
         Relatorio relatorio = new Relatorio();
 

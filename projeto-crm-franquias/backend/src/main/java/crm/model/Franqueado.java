@@ -3,8 +3,8 @@ package crm.model;
 public class Franqueado extends Usuario {
     private String nome_franquia;
 
-    public Franqueado(int id, String email, String nome_usuario, String senha, String nome_franquia) {
-        super(id, email, nome_usuario, senha);
+    public Franqueado(int id, String email, String nome_usuario, String senha, String nome_franquia, int id_franquia) {
+        super(id, email, nome_usuario, senha, id_franquia);
         this.nome_franquia = nome_franquia;
     }
 
