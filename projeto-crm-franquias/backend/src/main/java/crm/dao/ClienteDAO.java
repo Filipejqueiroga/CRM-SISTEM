@@ -70,7 +70,7 @@ public class ClienteDAO{
 
     }
 
-    public void exluir_clientes(Integer id_cliente){
+    public void excluir_clientes(Integer id_cliente){
         String url = "jdbc:sqlite:meu_banco.db";
 
         try {
