@@ -5,12 +5,14 @@ public class Usuario {
     private String email;
     private String nome_usuario;
     private String senha;
+    private int id_franquia;
 
-    public Usuario(int id, String email, String nome_usuario, String senha) {
+    public Usuario(int id, String email, String nome_usuario, String senha, int id_franquia) {
         this.id = id;
         this.email = email;
         this.nome_usuario = nome_usuario;
         this.senha = senha;
+        this.id_franquia = id_franquia;
     }
 
     // Métodos Get
@@ -29,6 +31,9 @@ public class Usuario {
     public String getSenha() {
         return this.senha;
     }
+    public int getId_Franquia(){
+        return this.id_franquia;
+    }
 
     // Métodos Set
     public void setId(int id) {
@@ -45,6 +50,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setId_Franquia(int id_franquia){
+        this.id_franquia = id_franquia;
     }
 
     // Método toString

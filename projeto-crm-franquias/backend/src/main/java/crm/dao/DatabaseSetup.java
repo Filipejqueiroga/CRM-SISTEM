@@ -1,4 +1,4 @@
-package crm;
+package crm.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class DatabaseSetup {
     public static void main(String[] args) {
         String url = "jdbc:sqlite:meu_banco.db";
-
+        
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 Statement stmt = conn.createStatement();
@@ -19,7 +19,8 @@ public class DatabaseSetup {
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         nome TEXT NOT NULL,
                         cidade TEXT NOT NULL,
-                        status TEXT NOT NULL
+                        status TEXT NOT NULL,
+                        tipo_negocio TEXT NOT NULL
                     );
                 """);
 
@@ -60,6 +61,7 @@ public class DatabaseSetup {
                         id_cliente INTEGER,
                         descricao TEXT NOT NULL,
                         valor REAL,
+                        data TEXT,
                         FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
                     );
                 """);
@@ -76,7 +78,7 @@ public class DatabaseSetup {
                     );
                 """);
 
-                stmt.execute("INSERT INTO Franquia (nome, cidade, status) VALUES ('Franquia A', 'Cidade A', 'Ativa'), ('Franquia B', 'Cidade B', 'Ativa');");
+                stmt.execute("INSERT INTO Franquia (nome, cidade, status, tipo_negocio) VALUES ('Franquia A', 'Cidade A', 'Ativa', 'Academia'), ('Franquia B', 'Cidade B', 'Ativa', 'Academia');");
 
                 stmt.execute("""
                 INSERT INTO Cliente (nome, numero_telefone, tipo_plano, id_franquia) VALUES
@@ -88,21 +90,21 @@ public class DatabaseSetup {
                 """);
 
                 stmt.execute("""
-                INSERT INTO Usuario (email, nome_usuario, senha) VALUES
-                    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123'),
-                    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456'),
-                    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789'),
-                    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101'),
-                    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212');
+                INSERT INTO Usuario (email, nome_usuario, senha, id_franquia) VALUES
+                    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123', 1),
+                    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456', 2),
+                    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789', 1),
+                    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101', 2),
+                    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212', 1);
                 """);
 
                 stmt.execute("""
-              INSERT INTO Venda (id_cliente, descricao, valor) VALUES
-                (1, 'Pagamento do plano anual - 2025', 1200.00),
-                (2, 'Compra de suplemento (Whey Protein)', 189.90),
-                (4, 'Pagamento do plano semestral - 2º Sem/2025', 650.00),
-                (3, 'Taxa de avaliação física', 80.00),
-                (5, 'Compra de luvas e coqueteleira', 75.50);
+                INSERT INTO Venda (id_cliente, descricao, valor, data) VALUES
+                    (1, 'Pagamento do plano anual - 2025', 1200.00, '2025-01-10'),
+                    (2, 'Compra de suplemento (Whey Protein)', 189.90, '2025-09-15'),
+                    (4, 'Pagamento do plano semestral - 2º Sem/2025', 650.00, '2025-07-01'),
+                    (3, 'Taxa de avaliação física', 80.00, '2025-09-01'),
+                    (5, 'Compra de luvas e coqueteleira', 75.50, '2025-08-20');
                 """);
 
                 stmt.execute("""
@@ -122,6 +124,7 @@ public class DatabaseSetup {
                 System.out.println("Banco criado e populado com sucesso!");
             }
         } catch (Exception e) {
+            System.err.println("--- ERRO FATAL NA CONFIGURAÇÃO DO BANCO ---");
             e.printStackTrace();
         }
     }
