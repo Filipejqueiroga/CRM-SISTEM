@@ -1,10 +1,5 @@
-package src.test.java.crm.model;
-import java.util.List;
 
-import src.main.java.crm.model.Cliente;
-import src.main.java.crm.model.Franquia;
-import src.main.java.crm.model.Lead;
-import src.main.java.crm.model.Venda;
+import java.util.List;
 
 public class Relatorio {
 

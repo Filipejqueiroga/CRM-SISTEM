@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package src.main.java.crm.model;
 
-=======
->>>>>>> develop
 public class Cliente {
 
     private int id;

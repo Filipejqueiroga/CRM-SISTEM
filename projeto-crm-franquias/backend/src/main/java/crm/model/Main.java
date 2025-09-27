@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-package src.main.java.crm.model;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import src.test.java.crm.model.Relatorio;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,8 +28,4 @@ public class Main {
         relatorio.relatorioGeral(franquias, clientes, vendas, leads);
 
     }
-=======
-public class Main {
-    
->>>>>>> develop
 }
