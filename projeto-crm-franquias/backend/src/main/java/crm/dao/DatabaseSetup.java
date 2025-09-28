@@ -3,6 +3,9 @@ package crm.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class DatabaseSetup {
     public static void main(String[] args) {
@@ -11,115 +14,19 @@ public class DatabaseSetup {
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 Statement stmt = conn.createStatement();
-
-                stmt.execute("PRAGMA foreign_keys = ON;");
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Franquia (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome TEXT NOT NULL,
-                        cidade TEXT NOT NULL,
-                        status TEXT NOT NULL,
-                        tipo_negocio TEXT NOT NULL
-                    );
-                """);
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Cliente (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome TEXT NOT NULL,
-                        numero_telefone TEXT NOT NULL,
-                        tipo_plano TEXT NOT NULL,
-                        id_franquia INTEGER,
-                        FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
-                    );
-                """);
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Usuario (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        email TEXT NOT NULL,
-                        nome_usuario TEXT NOT NULL,
-                        senha TEXT NOT NULL,
-                        id_franquia INTEGER,
-                        FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
-                    );
-                """);
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Lead (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        nome TEXT NOT NULL,
-                        numero_telefone TEXT NOT NULL,
-                        status TEXT NOT NULL
-                    );
-                """);
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Venda (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        id_cliente INTEGER,
-                        descricao TEXT NOT NULL,
-                        valor REAL,
-                        data TEXT,
-                        FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
-                    );
-                """);
-
-                stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS Checkin (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        cliente_id INTEGER,
-                        usuario_id INTEGER,
-                        data TEXT,
-                        hora TEXT,
-                        FOREIGN KEY(cliente_id) REFERENCES Cliente(id),
-                        FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
-                    );
-                """);
-
-                stmt.execute("INSERT INTO Franquia (nome, cidade, status, tipo_negocio) VALUES ('Franquia A', 'Cidade A', 'Ativa', 'Academia'), ('Franquia B', 'Cidade B', 'Ativa', 'Academia');");
-
-                stmt.execute("""
-                INSERT INTO Cliente (nome, numero_telefone, tipo_plano, id_franquia) VALUES
-                    ('Filipe', '83 8768-3922', 'anual', 1),
-                    ('Pedro', '83 8768-3922', 'anual', 1),
-                    ('Gabriela', '83 8768-3922', 'anual', 1),
-                    ('Bruno', '83 8768-3922', 'semestral', 1),
-                    ('Rebeca', '83 8768-3922', 'semestral', 1);
-                """);
-
-                stmt.execute("""
-                INSERT INTO Usuario (email, nome_usuario, senha, id_franquia) VALUES
-                    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123', 1),
-                    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456', 2),
-                    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789', 1),
-                    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101', 2),
-                    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212', 1);
-                """);
-
-                stmt.execute("""
-                INSERT INTO Venda (id_cliente, descricao, valor, data) VALUES
-                    (1, 'Pagamento do plano anual - 2025', 1200.00, '2025-01-10'),
-                    (2, 'Compra de suplemento (Whey Protein)', 189.90, '2025-09-15'),
-                    (4, 'Pagamento do plano semestral - 2º Sem/2025', 650.00, '2025-07-01'),
-                    (3, 'Taxa de avaliação física', 80.00, '2025-09-01'),
-                    (5, 'Compra de luvas e coqueteleira', 75.50, '2025-08-20');
-                """);
-
-                stmt.execute("""
-                    INSERT INTO Lead (nome, numero_telefone, status) VALUES
-                    ('belarmino', '83 8768-3922','satisfeito'),
-                    ('thais', '83 8768-3922','satisfeito'),
-                    ('lincoln', '83 8768-3922','satisfeito');
-                """);
-
-                stmt.execute("""
-                    INSERT INTO Checkin (cliente_id, usuario_id, data, hora) VALUES
-                    (1, 1, '19/09/2025', '15:22'),
-                    (2, 1, '19/09/2025', '09:56'),
-                    (3, 2, '19/09/2025', '14:29');
-                """);
+                
+                List<String> lines = Files.readAllLines(Paths.get("data/init.sql"));
+                StringBuilder sql = new StringBuilder();
+                for (String line : lines) {
+                    if (line.trim().isEmpty()) {
+                        continue;
+                    }
+                    sql.append(line);
+                    if (line.trim().endsWith(";")) {
+                        stmt.execute(sql.toString());
+                        sql.setLength(0);
+                    }
+                }
 
                 System.out.println("Banco criado e populado com sucesso!");
             }
