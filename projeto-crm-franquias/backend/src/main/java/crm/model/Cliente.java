@@ -4,55 +4,45 @@ public class Cliente {
 
     private int id;
     private String nome;
-    private String numero_telefone;
-    private String tipo_plano;
-    private int id_franquia;
+    private String numeroTelefone;
+    private String tipoPlano;
+    private int idFranquia;
 
-    public Cliente(int id, String nome, String numero_telefone, String tipo_plano, int id_franquia) {
+    public Cliente(int id, String nome, String numeroTelefone, String tipoPlano, int idFranquia) {
         this.id = id;
         this.nome = nome;
-        this.numero_telefone = numero_telefone;
-        this.tipo_plano = tipo_plano;
-        this.id_franquia = id_franquia;
+        this.numeroTelefone = numeroTelefone;
+        this.tipoPlano = tipoPlano;
+        this.idFranquia = idFranquia;
     }
 
-    public int getId() {
-        return id;
+    public Cliente(String nome, String numeroTelefone, String tipoPlano, int idFranquia) {
+        this(-1, nome, numeroTelefone, tipoPlano, idFranquia);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String getNumeroTelefone() { return numeroTelefone; }
 
-    public String getNumero_telefone() {
-        return numero_telefone;
-    }
+    public String getTipoPlano() { return tipoPlano; }
 
-    public void setNumero_telefone(String numero_telefone) {
-        this.numero_telefone = numero_telefone;
-    }
+    public int getIdFranquia() { return idFranquia; }
 
-    public String getTipo_plano() {
-        return tipo_plano;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public void setTipo_plano(String tipo_plano) {
-        this.tipo_plano = tipo_plano;
-    }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public int getId_franquia() {
-        return id_franquia;
-    }
+    public void setNumeroTelefone(String numeroTelefone) { this.numeroTelefone = numeroTelefone; }
 
-    public void setId_franquia(int id_franquia) {
-        this.id_franquia = id_franquia;
+    public void setTipoPlano(String tipoPlano) { this.tipoPlano = tipoPlano; }
+
+    public void setIdFranquia(int idFranquia) { this.idFranquia = idFranquia; }
+
+
+    @Override
+    public String toString() {
+        return "Cliente{id=" + id + ", nome='" + nome + "', telefone='" + numeroTelefone + "'}";
     }
 }

@@ -1,58 +1,47 @@
 package crm.model;
 
 public class Venda {
-
     private int id;
-    private int id_cliente;
+    private int idCliente;
     private String descricao;
     private double valor;
     private String data;
 
-    public Venda(int id, int id_cliente, String descricao, double valor, String data) {
+    public Venda(int id, int idCliente, String descricao, double valor, String data) {
         this.id = id;
-        this.id_cliente = id_cliente;
+        this.idCliente = idCliente;
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
     }
 
-    public int getId() {
-        return id;
+    public Venda(int idCliente, String descricao, double valor) {
+        this(-1, idCliente, descricao, valor, "");
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
 
-    public int getId_cliente() {
-        return id_cliente;
-    }
+    public int getIdCliente() { return idCliente; }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
-    }
+    public String getDescricao() { return descricao; }
 
-    public String getDescricao() {
-        return descricao;
-    }
+    public double getValor() { return valor; }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    public String getData() { return data; }
 
-    public double getValor() {
-        return valor;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
+    public void setIdCliente(int idCliente) { this.idCliente = idCliente; }
 
-    public String getData() {
-        return data;
-    }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
 
-    public void setData(String data){
-        this.data = data;
+    public void setValor(double valor) { this.valor = valor; }
+
+    public void setData(String data) { this.data = data; }
+
+
+    @Override
+    public String toString() {
+        return "Venda{id=" + id + ", idCliente=" + idCliente + ", descricao='" + descricao + "', valor=" + valor + ", data='" + data + "'}";
     }
 }

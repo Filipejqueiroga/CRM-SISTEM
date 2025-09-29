@@ -1,24 +1,37 @@
 package crm.model;
 
 public class Franqueador extends Usuario {
-    
-    private String nome_empresa;
+    private String nomeEmpresa;
 
-    public Franqueador(int id, String email, String nome_usuario, String senha, String nome_empresa, int id_franquia) {
-        super(id, email, nome_usuario, senha, id_franquia);
-        this.nome_empresa = nome_empresa;
+
+    public Franqueador(int id, String email, String nomeUsuario, String senha, String nomeEmpresa) {
+        super(id, email, nomeUsuario, senha);
+        this.nomeEmpresa = nomeEmpresa;
     }
 
-    public String getNome_empresa() {
-        return this.nome_empresa;
+
+    public Franqueador(int id, String email, String nomeUsuario, String senha, String nomeEmpresa, int idFranquia) {
+        super(id, email, nomeUsuario, senha, idFranquia);
+        this.nomeEmpresa = nomeEmpresa;
     }
 
-    public void setNome_empresa(String nome_empresa) {
-        this.nome_empresa = nome_empresa;
+    public String getNomeEmpresa() {
+        return nomeEmpresa; }
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa; }
+
+
+    @Override
+    public void exibirMenu() {
+        System.out.println("1- Listar Franqueados");
+        System.out.println("2- Consultar Clientes (todas as franquias)");
+        System.out.println("3- Consultar Leads");
+        System.out.println("4- Gerar Relatórios");
     }
+
 
     @Override
     public String toString() {
-        return "Nome do Franqueador: " + getNome_usuario() + "\n" + "Franqueadora: " + nome_empresa;
+        return "Franqueador{nome='" + getNomeUsuario() + "', empresa='" + nomeEmpresa + "'}";
     }
 }

@@ -5,29 +5,22 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Franquia> franquias = new ArrayList<>();
-        List<Cliente> clientes = new ArrayList<>();
-        List<Venda> vendas = new ArrayList<>();
-        List<Lead> leads = new ArrayList<>();
 
-        franquias.add(new Franquia(001, "Selfit", "Joao Pessoa", "Ativa", "Academia"));
-        franquias.add(new Franquia(002, "Selfit", "Cabedelo", "Ativa", "Academia"));
-        franquias.add(new Franquia(003, "Selfit", "Bayeux", "Ativa", "Academia"));
+        Franqueador franqueador = new Franqueador(1, "gabriela@empresa.com", "Gabi123", "senha123", "Gabix");
+        Franqueado franqueado = new Franqueado(2, "filipe@email.com", "Filipe", "senha456", "Unidade centro", 101);
+        Cliente cliente = new Cliente(10, "Rebeca", "+5583999999999", "Mensal", 101);
+        Academia academia = new Academia(101, "Academia Central", "Cabedelo", "Ativa", "Fit", "");
 
-        clientes.add(new Cliente(123, "Rebeca", "4002-8922", "Mensal", 002));
-        clientes.add(new Cliente(1357, "Pedro", "0800-0800", "Trimestral", 001));
-        clientes.add(new Cliente(12345, "Juscelino", "1234-5678", "Mensal", 003));
+        System.out.println(franqueador);
+        System.out.println(franqueado);
+        System.out.println(cliente);
 
-        vendas.add(new Venda(111, 123, "pagamento plano mensal", 200.00, ""));
-        vendas.add(new Venda(222, 1357, "pagamento plano trimestral", 500.00, ""));
-        vendas.add(new Venda(333, 12345, "pagamento plano mennsal", 200.00, "19/07/2006"));
-        
-        leads.add(new Lead(2,"Bruno", "2323-4545", "Interessado"));
+        academia.registrarCheckin(cliente);
 
-        Relatorio relatorio = new Relatorio();
+        Venda venda = new Venda(1, cliente.getId(), "Plano Mensal", 120.0, "01-09-2025");
+        System.out.println(venda);
 
-        System.out.println("Relatorio:");
-        relatorio.relatorioGeral(franquias, clientes, vendas, leads);
-
+        Lead lead = new Lead("Pedro", "+5583988888888", "Novo");
+        System.out.println(lead);
     }
 }

@@ -1,63 +1,57 @@
-package crm.model;
-
 public class Usuario {
     private int id;
     private String email;
-    private String nome_usuario;
+    private String nomeUsuario;
     private String senha;
-    private int id_franquia;
+    private int idFranquia;
 
-    public Usuario(int id, String email, String nome_usuario, String senha, int id_franquia) {
+    public Usuario(int id, String email, String nomeUsuario, String senha) {
         this.id = id;
         this.email = email;
-        this.nome_usuario = nome_usuario;
+        this.nomeUsuario = nomeUsuario;
         this.senha = senha;
-        this.id_franquia = id_franquia;
+        this.idFranquia = -1;
     }
 
-    // Métodos Get
-    public int getId() {
-        return this.id;
+
+    public Usuario(int id, String email, String nomeUsuario, String senha, int idFranquia) {
+        this.id = id;
+        this.email = email;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.idFranquia = idFranquia;
     }
+
+
+    public int getId() { return id; }
 
     public String getEmail() {
-        return this.email;
+        return email; }
+
+    public String getNomeUsuario() { return nomeUsuario; }
+
+    public String getSenha() { return senha; }
+
+    public int getIdFranquia() { return idFranquia; }
+
+
+    public void setId(int id) { this.id = id; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public void setNomeUsuario(String nomeUsuario) { this.nomeUsuario = nomeUsuario; }
+
+    public void setSenha(String senha) { this.senha = senha; }
+
+    public void setIdFranquia(int idFranquia) { this.idFranquia = idFranquia; }
+
+
+    @Override
+    public String toString() { return "Usuario{id=" + id + ", nomeUsuario='" + nomeUsuario + "', email='" + email + "'}";
     }
 
-    public String getNome_usuario() {
-        return this.nome_usuario;
-    }
 
-    public String getSenha() {
-        return this.senha;
-    }
-    public int getId_Franquia(){
-        return this.id_franquia;
-    }
-
-    // Métodos Set
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setNome_usuario(String nome_usuario) {
-        this.nome_usuario = nome_usuario;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public void setId_Franquia(int id_franquia){
-        this.id_franquia = id_franquia;
-    }
-
-    // Método toString
-    public String toString() {
-        return "Nome do usuário: " + nome_usuario + "\n" + "Email do usuário: " + email;
+    public void exibirMenu() {
+        System.out.println("Menu do usuário");
     }
 }
