@@ -1,33 +1,29 @@
 package crm.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import crm.dao.ClienteDAO;
+import crm.dao.FranquiaDAO;
+import crm.dao.LeadDAO;
+import crm.dao.VendaDAO;
 
 public class Main {
     public static void main(String[] args) {
-        List<Franquia> franquias = new ArrayList<>();
-        List<Cliente> clientes = new ArrayList<>();
-        List<Venda> vendas = new ArrayList<>();
-        List<Lead> leads = new ArrayList<>();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        LeadDAO leadDAO = new LeadDAO();
+        VendaDAO vendaDAO = new VendaDAO();
 
-        franquias.add(new Franquia(001, "Selfit", "Joao Pessoa", "Ativa", "Academia"));
-        franquias.add(new Franquia(002, "Selfit", "Cabedelo", "Ativa", "Academia"));
-        franquias.add(new Franquia(003, "Selfit", "Bayeux", "Ativa", "Academia"));
+        Relatorio relatorio = new Relatorio(clienteDAO, vendaDAO, leadDAO);
 
-        clientes.add(new Cliente(123, "Rebeca", "4002-8922", "Mensal", 002));
-        clientes.add(new Cliente(1357, "Pedro", "0800-0800", "Trimestral", 001));
-        clientes.add(new Cliente(12345, "Juscelino", "1234-5678", "Mensal", 003));
+        int idFranquiaTeste = 1;
 
-        vendas.add(new Venda(111, 123, "pagamento plano mensal", 200.00, ""));
-        vendas.add(new Venda(222, 1357, "pagamento plano trimestral", 500.00, ""));
-        vendas.add(new Venda(333, 12345, "pagamento plano mennsal", 200.00, "19/07/2006"));
-        
-        leads.add(new Lead(2,"Bruno", "2323-4545", "Interessado"));
+        String dataTeste = "2025-01-10";
 
-        Relatorio relatorio = new Relatorio();
+        // teste do relatorio de uma franquia especifica
+        System.out.println("Relatorio da franquia id "+idFranquiaTeste+ ":");
 
-        System.out.println("Relatorio:");
-        relatorio.relatorioGeral(franquias, clientes, vendas, leads);
+        relatorio.relatorioFranquia(idFranquiaTeste, dataTeste);
 
+        //teste do relatorio geral
+        System.out.println("Relatorio Geral: ");
+        relatorio.relatorioGeral(dataTeste);
     }
 }
