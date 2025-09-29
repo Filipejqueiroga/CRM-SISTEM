@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.sourcePaths": [
+        "projeto-crm-franquias/backend/src/main/java/crm/model",
+        "projeto-crm-franquias/backend/src/main/java/crm/dao"
+    ]
+}

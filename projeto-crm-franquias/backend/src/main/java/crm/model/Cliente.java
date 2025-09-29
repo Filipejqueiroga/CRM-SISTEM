@@ -1,3 +1,4 @@
+package crm.model;
 
 public class Cliente {
 
