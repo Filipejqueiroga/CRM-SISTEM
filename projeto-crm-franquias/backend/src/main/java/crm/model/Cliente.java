@@ -1,3 +1,5 @@
+package crm.model;
+
 public class Cliente {
 
     private int id;
