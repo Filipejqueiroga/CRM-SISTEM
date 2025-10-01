@@ -65,6 +65,42 @@ public class VendaDAO {
         return vendas;
     }
     
+    public List<Venda> listar_vendas_franquia(int idFranquia, String dataVenda){
+        var vendas = new ArrayList<Venda>();
+        String url = "jdbc:sqlite:meu_banco.db";
+
+        String sql = """
+        SELECT v.id, v.id_cliente, v.descricao, v.valor, v.data
+        FROM Venda v
+        JOIN Cliente c ON v.id_cliente = c.id
+        WHERE c.id_franquia = ? AND v.data = ?
+        """;
+
+        try {
+            var conexao = DriverManager.getConnection(url);
+            var ps = conexao.prepareStatement(sql);
+            ps.setInt(1, idFranquia);
+            ps.setString(2, dataVenda);
+            var rs = ps.executeQuery();
+
+            while (rs.next()) {
+                var id = rs.getInt("id");
+                var idCliente = rs.getInt("id_cliente");
+                var descricao = rs.getString("descricao");
+                var valor = rs.getDouble("valor");
+                var data = rs.getString("data");
+
+                var venda = new Venda(id, idCliente, descricao, valor, data);
+                vendas.add(venda);
+            }
+            rs.close();
+            ps.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar vendas da franquia nesta data.", e);
+        }
+        return vendas;
+    }
     public void excluir_venda(Integer id_venda) {
         String sql = "DELETE FROM Venda WHERE id = ?";
 

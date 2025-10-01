@@ -70,6 +70,34 @@ public class ClienteDAO{
 
     }
 
+    public List<Cliente> listar_clientes_franquia(int idFranquia){
+        var clientes = new ArrayList<Cliente>();
+        String url = "jdbc:sqlite:meu_banco.db";
+
+        try {
+            var conexao = DriverManager.getConnection(url);
+            var sql = "SELECT * FROM Cliente WHERE id_franquia = ?";
+            var ps = conexao.prepareStatement(sql);
+            ps.setInt(1, idFranquia);
+            var rs = ps.executeQuery();
+
+            while (rs.next()) {
+                var id = rs.getInt("id");
+                var nome = rs.getString("nome");
+                var numero_telefone = rs.getString("numero_telefone");
+                var tipo_plano = rs.getString("tipo_plano");
+                var id_franquia = rs.getInt("id_franquia");
+
+                var cliente = new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia);
+                clientes.add(cliente);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar clientes.", e);
+        }
+        return clientes;
+    }
+
     public void excluir_clientes(Integer id_cliente){
         String url = "jdbc:sqlite:meu_banco.db";
 
