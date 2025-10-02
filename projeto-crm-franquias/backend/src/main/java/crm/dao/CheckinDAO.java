@@ -16,8 +16,8 @@ public class CheckinDAO {
             var conexao = DriverManager.getConnection(url);
             var ps = conexao.prepareStatement(sql);
 
-            ps.setInt(1, checkin.getCliente_id());
-            ps.setInt(2, checkin.getUsuario_id());
+            ps.setInt(1, checkin.getClienteId());
+            ps.setInt(2, checkin.getUsuarioId());
             ps.setString(3, checkin.getData());
             ps.setString(4, checkin.getHora());
             ps.execute();
@@ -65,8 +65,8 @@ public class CheckinDAO {
             var conexao = DriverManager.getConnection(url);
             var ps = conexao.prepareStatement(sql);
 
-            ps.setInt(1, checkin.getCliente_id());
-            ps.setInt(2, checkin.getUsuario_id());
+            ps.setInt(1, checkin.getClienteId());
+            ps.setInt(2, checkin.getUsuarioId());
             ps.setString(3, checkin.getData());
             ps.setString(4, checkin.getHora());
             ps.setInt(5, checkin.getId());

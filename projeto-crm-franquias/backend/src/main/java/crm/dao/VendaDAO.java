@@ -20,7 +20,7 @@ public class VendaDAO {
             var conexao = DriverManager.getConnection(URL);
             var ps = conexao.prepareStatement(sql);
 
-            ps.setInt(1, venda.getId_cliente());
+            ps.setInt(1, venda.getIdCliente());
             ps.setString(2, venda.getDescricao());
             ps.setDouble(3, venda.getValor());
             ps.setString(4, venda.getData());
@@ -126,7 +126,7 @@ public class VendaDAO {
             var conexao = DriverManager.getConnection(URL);
             var ps = conexao.prepareStatement(sql);
 
-            ps.setInt(1, venda.getId_cliente());
+            ps.setInt(1, venda.getIdCliente());
             ps.setString(2, venda.getDescricao());
             ps.setDouble(3, venda.getValor());
             ps.setString(4, venda.getData());

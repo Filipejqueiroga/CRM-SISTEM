@@ -19,7 +19,7 @@ public class FranquiaDAO {
             ps.setString(1, franquia.getNome());
             ps.setString(2, franquia.getCidade());
             ps.setString(3, franquia.getStatus());
-            ps.setString(4, franquia.getTipo_negocio()); // NOVO CAMPO
+            ps.setString(4, franquia.getTipoNegocio()); // NOVO CAMPO
             ps.execute();
 
             ps.close();
@@ -87,7 +87,7 @@ public class FranquiaDAO {
             ps.setString(1, franquia.getNome());
             ps.setString(2, franquia.getCidade());
             ps.setString(3, franquia.getStatus());
-            ps.setString(4, franquia.getTipo_negocio()); 
+            ps.setString(4, franquia.getTipoNegocio()); 
             ps.setInt(5, franquia.getId());           
             ps.execute();
 
