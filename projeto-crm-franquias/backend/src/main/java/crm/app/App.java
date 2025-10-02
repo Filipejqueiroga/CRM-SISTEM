@@ -79,7 +79,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     } else {
                         for (var f : lista) {
                             System.out.printf("ID: %d | Nome: %s | Cidade: %s | Status: %s | Tipo: %s\n",
-                                    f.getId(), f.getNome(), f.getCidade(), f.getStatus(), f.getTipo_negocio());
+                                    f.getId(), f.getNome(), f.getCidade(), f.getStatus(), f.getTipoNegocio());
                         }
                     }
                     break;
@@ -153,7 +153,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nListando clientes...");
                     dao.listar_clientes().forEach(c -> System.out.printf(
                         "ID: %d | Nome: %s | Tel: %s | Plano: %s | Franquia ID: %d\n",
-                        c.getId(), c.getNome(), c.getNumero_telefone(), c.getTipo_plano(), c.getId_franquia()
+                        c.getId(), c.getNome(), c.getNumeroTelefone(), c.getTipoPlano(), c.getIdFranquia()
                     ));
                     break;
                 case 2:
@@ -202,7 +202,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nListando usuários...");
                     dao.listar_usuarios().forEach(u -> System.out.printf(
                         "ID: %d | Usuário: %s | Email: %s | Franquia ID: %d\n",
-                        u.getId(), u.getNome_usuario(), u.getEmail(), u.getId_Franquia()
+                        u.getId(), u.getNomeUsuario(), u.getEmail(), u.getIdFranquia()
                     ));
                     break;
                 case 2:
@@ -251,7 +251,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nListando leads...");
                     dao.listar_leads().forEach(l -> System.out.printf(
                         "ID: %d | Nome: %s | Telefone: %s | Status: %s\n",
-                        l.getId(), l.getNome(), l.getNumero_telefone(), l.getStatus()
+                        l.getId(), l.getNome(), l.getNumeroTelefone(), l.getStatus()
                     ));
                     break;
                 case 2:
@@ -298,7 +298,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nListando vendas...");
                     dao.listar_vendas().forEach(v -> System.out.printf(
                         "ID: %d | Cliente ID: %d | Descrição: %s | Valor: %.2f | Data: %s\n",
-                        v.getId(), v.getId_cliente(), v.getDescricao(), v.getValor(), v.getData()
+                        v.getId(), v.getIdCliente(), v.getDescricao(), v.getValor(), v.getData()
                     ));
                     break;
                 case 2:
@@ -346,7 +346,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nListando check-ins...");
                     dao.listar_checkins().forEach(ch -> System.out.printf(
                         "ID: %d | Cliente ID: %d | Usuário ID: %d | Data: %s | Hora: %s\n",
-                        ch.getId(), ch.getCliente_id(), ch.getUsuario_id(), ch.getData(), ch.getHora()
+                        ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getData(), ch.getHora()
                     ));
                     break;
                 case 2:

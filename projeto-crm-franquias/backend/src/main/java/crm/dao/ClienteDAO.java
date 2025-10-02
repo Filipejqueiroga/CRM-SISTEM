@@ -22,9 +22,9 @@ public class ClienteDAO{
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, cliente.getNome());
-            ps.setString(2, cliente.getNumero_telefone());
-            ps.setString(3, cliente.getTipo_plano());
-            ps.setInt(4, cliente.getId_franquia());            
+            ps.setString(2, cliente.getNumeroTelefone());
+            ps.setString(3, cliente.getTipoPlano());
+            ps.setInt(4, cliente.getIdFranquia());            
             ps.execute();
 
             ps.close();
@@ -128,9 +128,9 @@ public class ClienteDAO{
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, cliente.getNome());
-            ps.setString(2, cliente.getNumero_telefone());
-            ps.setString(3, cliente.getTipo_plano());
-            ps.setInt(4, cliente.getId_franquia());
+            ps.setString(2, cliente.getNumeroTelefone());
+            ps.setString(3, cliente.getTipoPlano());
+            ps.setInt(4, cliente.getIdFranquia());
             ps.setInt(5, cliente.getId());
             
             ps.execute();

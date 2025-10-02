@@ -53,4 +53,3 @@ public class Franquia {
         return "Franquia{id=" + id + ", nome='" + nome + "', cidade='" + cidade + "', status='" + status + "'}";
     }
 }
-}

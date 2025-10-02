@@ -21,7 +21,7 @@ public class LeadDAO {
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, lead.getNome());
-            ps.setString(2, lead.getNumero_telefone());
+            ps.setString(2, lead.getNumeroTelefone());
             ps.setString(3, lead.getStatus());
             
             ps.execute();
@@ -89,7 +89,7 @@ public class LeadDAO {
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, lead.getNome());
-            ps.setString(2, lead.getNumero_telefone());
+            ps.setString(2, lead.getNumeroTelefone());
             ps.setString(3, lead.getStatus());
             ps.setInt(4, lead.getId());
             

@@ -21,9 +21,9 @@ public class UsuarioDAO {
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, usuario.getEmail());
-            ps.setString(2, usuario.getNome_usuario());
+            ps.setString(2, usuario.getNomeUsuario());
             ps.setString(3, usuario.getSenha());
-            ps.setInt(4, usuario.getId_Franquia()); 
+            ps.setInt(4, usuario.getIdFranquia()); 
             
             ps.execute();
 
@@ -91,9 +91,9 @@ public class UsuarioDAO {
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, usuario.getEmail());
-            ps.setString(2, usuario.getNome_usuario());
+            ps.setString(2, usuario.getNomeUsuario());
             ps.setString(3, usuario.getSenha());
-            ps.setInt(4, usuario.getId_Franquia()); 
+            ps.setInt(4, usuario.getIdFranquia()); 
             ps.setInt(5, usuario.getId());         
             
             ps.execute();
