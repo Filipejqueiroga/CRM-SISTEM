@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS Usuario (
     nome_usuario TEXT NOT NULL,
     senha TEXT NOT NULL,
     id_franquia INTEGER,
+    tipo_usuario TEXT NOT NULL,
     FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
 );
 
@@ -59,12 +60,12 @@ INSERT INTO Cliente (nome, numero_telefone, tipo_plano, id_franquia) VALUES
     ('Bruno', '83 8768-3922', 'semestral', 1),
     ('Rebeca', '83 8768-3922', 'semestral', 1);
 
-INSERT INTO Usuario (email, nome_usuario, senha) VALUES
-    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123'),
-    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456'),
-    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789'),
-    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101'),
-    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212');
+INSERT INTO Usuario (email, nome_usuario, senha, id_franquia, tipo_usuario) VALUES
+    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123', 1, 'admin'),
+    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456', 1, 'funcionario'),
+    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789', 1, 'funcionario'),
+    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101', 1, 'funcionario'),
+    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212', 1, 'funcionario');
 
 INSERT INTO Venda (id_cliente, descricao, valor) VALUES
     (1, 'Pagamento do plano anual - 2025', 1200.00),
