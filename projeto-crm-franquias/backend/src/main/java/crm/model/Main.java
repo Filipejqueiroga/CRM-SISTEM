@@ -4,6 +4,7 @@ import crm.dao.ClienteDAO;
 import crm.dao.FranquiaDAO;
 import crm.dao.LeadDAO;
 import crm.dao.VendaDAO;
+import crm.dao.CheckinDAO;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,18 +27,14 @@ public class Main {
         Lead lead = new Lead("Pedro", "+5583988888888", "Novo");
         System.out.println(lead);
 
-        ClienteDAO clienteDAO = new ClienteDAO();
-        LeadDAO leadDAO = new LeadDAO();
-        VendaDAO vendaDAO = new VendaDAO();
-
-        Relatorio relatorio = new Relatorio(clienteDAO, vendaDAO, leadDAO);
+        Relatorio relatorio = new Relatorio();
 
         int idFranquiaTeste = 1;
 
         String dataTeste = "2025-01-10";
 
         // teste do relatorio de uma franquia especifica
-        System.out.println("Relatorio da franquia id "+idFranquiaTeste+ ":");
+        System.out.println("Relatorio da franquia "+idFranquiaTeste+ ":");
 
         relatorio.relatorioFranquia(idFranquiaTeste, dataTeste);
 
