@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS Franquia (
     status TEXT NOT NULL,
     tipo_negocio TEXT NOT NULL,
     empresa_id INTEGER NOT NULL,
-    tipo_negocio TEXT NOT NULL,
     FOREIGN KEY(empresa_id) REFERENCES Empresa(id)
 );
 
@@ -74,15 +73,9 @@ CREATE TABLE IF NOT EXISTS Checkin (
 
 INSERT INTO Empresa (nome, cnpj) VALUES ('Selfit', '12345678000199');
 
-<<<<<<< HEAD
 INSERT INTO Franquia (nome, cidade, status, tipo_negocio, empresa_id) VALUES
 ('Selfit João Pessoa', 'João Pessoa', 'Ativa', 'Academia', 1),
 ('Selfit São Paulo', 'São Paulo', 'Ativa', 'Academia', 1);
-=======
-INSERT INTO Franquia (nome, cidade, status, empresa_id, tipo_negocio) VALUES
-('Selfit João Pessoa', 'João Pessoa', 'Ativa', 1, 'Academia'),
-('Selfit São Paulo', 'São Paulo', 'Ativa', 1, 'Academia');
->>>>>>> 6e3ca3f3f2d0143e7c1b5fd364c80b9758af752c
 
 INSERT INTO Usuario (email, nome_usuario, senha, tipo_usuario, empresa_id)
 VALUES ('admin@selfit.com', 'admin_selfit', 'senha123', 'franqueador', 1);
