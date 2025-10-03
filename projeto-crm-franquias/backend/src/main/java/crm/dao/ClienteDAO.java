@@ -142,6 +142,6 @@ public class ClienteDAO{
         catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar lead.", e);
         }
-    }
-    
+    }   
 }
+

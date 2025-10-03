@@ -1,3 +1,4 @@
+crm\dao\ConnectionFactory.class
 crm\model\Academia.class
 crm\dao\ClienteDAO.class
 crm\dao\FranquiaDAO.class
