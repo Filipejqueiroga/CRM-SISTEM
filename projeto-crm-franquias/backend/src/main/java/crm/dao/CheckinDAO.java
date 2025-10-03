@@ -64,7 +64,7 @@ public class CheckinDAO {
 
         try {
             var conexao = DriverManager.getConnection(url);
-            var sql = "SELECT * FROM Checkin WHERE id_franquia = ?";
+            var sql = "SELECT * FROM Checkin WHERE franquia_id = ?";
             var ps = conexao.prepareStatement(sql);
             ps.setInt(1, idFranquia);
             var rs = ps.executeQuery();

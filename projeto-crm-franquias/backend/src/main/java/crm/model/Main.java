@@ -17,7 +17,7 @@ public class Main {
 
         int idFranquiaTeste = 2;
 
-        String dataTeste = "03/06/25";
+        String dataTeste = "03/06/2025";
 
         // teste do relatorio de uma franquia especifica
         System.out.println("Relatorio da franquia "+idFranquiaTeste+ ":");
@@ -27,6 +27,5 @@ public class Main {
         //teste do relatorio geral
         System.out.println("Relatorio Geral: ");
         relatorio.relatorioGeral(dataTeste);
-
     }
 }
