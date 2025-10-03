@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS Venda (
     franquia_id INTEGER,
     descricao TEXT NOT NULL,
     valor REAL,
+    data TEXT,
     FOREIGN KEY(id_cliente) REFERENCES Cliente(id),
     FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
 );
@@ -90,16 +91,16 @@ INSERT INTO Cliente (nome, numero_telefone, tipo_plano, franquia_id) VALUES
 ('Gabriela', '83 2222-3333', 'anual', 2),
 ('Bruno', '83 4444-5555', 'semestral', 2);
 
-INSERT INTO Venda (id_cliente, descricao, valor) VALUES
-(1, 'Pagamento plano anual - 2025', 1200.00),
-(2, 'Compra suplemento Whey Protein', 180.00),
-(3, 'Taxa de matrícula', 150.00);
+INSERT INTO Venda (id_cliente, franquia_id, descricao, valor, data) VALUES
+(1, 2,'Pagamento plano anual - 2025', 1200.00, '03/06/2025'),
+(2, 2,'Compra suplemento Whey Protein', 180.00, '06/09/2023'),
+(3, 2,'Taxa de matrícula', 150.00, '02/08/2012');
 
 INSERT INTO Lead (nome, numero_telefone, status, franquia_id) VALUES
 ('Thais', '83 8768-3922','em negociação', 1),
 ('Lincoln', '83 1234-5678','aguardando resposta', 2);
 
-INSERT INTO Checkin (cliente_id, usuario_id, data, hora) VALUES
-(1, 2, '2025-09-19', '15:22'),
-(2, 2, '2025-09-19', '09:56'),
-(3, 3, '2025-09-19', '14:29');
+INSERT INTO Checkin (cliente_id, usuario_id, franquia_id,data, hora) VALUES
+(1, 2, 2,'2025-09-19', '15:22'),
+(2, 2, 2,'2025-09-19', '09:56'),
+(3, 3, 2,'2025-09-19', '14:29');
