@@ -42,7 +42,7 @@ public class ClienteDAO{
 
         try {
         var conexao = DriverManager.getConnection(url);
-        var sql = "SELECT * FROM Cliente";
+        var sql = "SELECT * FROM Cliente WHERE franquia_id = ?";
         var ps = conexao.prepareStatement(sql);
         var rs = ps.executeQuery(); // execute Query é tipo uma escada pela tabela
 
@@ -76,7 +76,7 @@ public class ClienteDAO{
 
         try {
             var conexao = DriverManager.getConnection(url);
-            var sql = "SELECT * FROM Cliente WHERE id_franquia = ?";
+            var sql = "SELECT * FROM Cliente WHERE id_franquia = ? AND franquia_id  = ?";
             var ps = conexao.prepareStatement(sql);
             ps.setInt(1, idFranquia);
             var rs = ps.executeQuery();
