@@ -6,41 +6,37 @@ public class Franqueado extends Usuario {
 
 
     public Franqueado(int id, String email, String nomeUsuario, String senha, String nomeFranquia, int idFranquia) {
-        super(id, email, nomeUsuario, senha, idFranquia);
+        super(id, email, nomeUsuario, senha, 1, idFranquia);
         this.nomeFranquia = nomeFranquia;
         this.idFranquiaLocal = idFranquia;
     }
 
 
     public Franqueado(int id, String email, String nomeUsuario, String senha, String nomeFranquia) {
-        super(id, email, nomeUsuario, senha);
+        super(id, email, nomeUsuario, senha,1);
         this.nomeFranquia = nomeFranquia;
         this.idFranquiaLocal = -1;
     }
 
 
-    public String getNomeFranquia() {
-        return nomeFranquia; }
+    public String getNomeFranquia() { return nomeFranquia; }
 
-    public int getIdFranquiaLocal() {
-        return idFranquiaLocal; }
+    public int getIdFranquiaLocal() { return idFranquiaLocal; }
 
-    public void setNomeFranquia(String nomeFranquia) {
-        this.nomeFranquia = nomeFranquia; }
+    public void setNomeFranquia(String nomeFranquia) { this.nomeFranquia = nomeFranquia; }
 
-    public void setIdFranquiaLocal(int idFranquiaLocal) {
-        this.idFranquiaLocal = idFranquiaLocal; }
+    public void setIdFranquiaLocal(int idFranquiaLocal) { this.idFranquiaLocal = idFranquiaLocal; }
 
 
     @Override
     public void exibirMenu() {
         System.out.println("\n=== MENU DO FRANQUEADO ===");
-        System.out.println("1- Cadastrar Cliente");
-        System.out.println("2- Consultar Clientes da Franquia");
-        System.out.println("3- Registrar Venda");
-        System.out.println("4- Registrar Lead");
-        System.out.println("5- Registrar Check-in");
-        System.out.println("6- Resumo da Franquia");
+        System.out.println("1- Nome da Franquia");
+        System.out.println("2- Gerenciar Clientes");
+        System.out.println("3- Gerenciar Vendas");
+        System.out.println("4- Gerenciar Leads");
+        System.out.println("5- Gerenciar Check-in");
+        System.out.println("6- Relatórios");
         System.out.println("0- Sair");
         System.out.print("Escolha uma opção: ");
     }
