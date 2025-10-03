@@ -18,7 +18,7 @@ public class ClienteDAO{
 
         try {
             var conexao = DriverManager.getConnection(url);
-            var sql = "INSERT INTO Cliente(nome, numero_telefone, tipo_plano, id_franquia) VALUES (?, ?, ?, ?)";
+            var sql = "INSERT INTO Cliente(nome, numero_telefone, tipo_plano, franquia_id) VALUES (? , ?, ?, ?)";
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, cliente.getNome());
@@ -51,7 +51,7 @@ public class ClienteDAO{
             var nome = rs.getString("nome");
             var numero_telefone = rs.getString("numero_telefone");
             var tipo_plano = rs.getString("tipo_plano");
-            var id_franquia = rs.getInt("id_franquia");
+            var id_franquia = rs.getInt("franquia_id");
 
              var cliente = new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia);
 
@@ -76,7 +76,7 @@ public class ClienteDAO{
 
         try {
             var conexao = DriverManager.getConnection(url);
-            var sql = "SELECT * FROM Cliente WHERE id_franquia = ?";
+            var sql = "SELECT * FROM Cliente WHERE franquia_id = ?";
             var ps = conexao.prepareStatement(sql);
             ps.setInt(1, idFranquia);
             var rs = ps.executeQuery();
@@ -86,7 +86,7 @@ public class ClienteDAO{
                 var nome = rs.getString("nome");
                 var numero_telefone = rs.getString("numero_telefone");
                 var tipo_plano = rs.getString("tipo_plano");
-                var id_franquia = rs.getInt("id_franquia");
+                var id_franquia = rs.getInt("franquia_id");
 
                 var cliente = new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia);
                 clientes.add(cliente);
@@ -124,7 +124,7 @@ public class ClienteDAO{
 
         try {
             var conexao = DriverManager.getConnection(url);
-            var sql = "UPDATE Cliente SET nome = ?, numero_telefone = ?, tipo_plano = ?, id_franquia = ? WHERE id = ?";
+            var sql = "UPDATE Cliente SET nome = ?, numero_telefone = ?, tipo_plano = ?, franquia_id = ? WHERE id = ?";
             var ps = conexao.prepareStatement(sql);
 
             ps.setString(1, cliente.getNome());
