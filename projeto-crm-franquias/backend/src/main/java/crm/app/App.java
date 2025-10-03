@@ -345,7 +345,7 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                 case 1:
                     System.out.println("\nListando check-ins...");
                     dao.listar_checkins().forEach(ch -> System.out.printf(
-                        "ID: %d | Cliente ID: %d | Usuário ID: %d | Data: %s | Hora: %s\n",
+                        "ID: %d | Cliente ID: %d | Usuário ID: %d | Franquia ID: %d | Data: %s | Hora: %s\n",
                         ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getData(), ch.getHora()
                     ));
                     break;
@@ -353,9 +353,10 @@ private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
                     System.out.println("\nAdicionando novo check-in...");
                     System.out.print("ID do Cliente: "); int idCliente = Integer.parseInt(scanner.nextLine());
                     System.out.print("ID do Usuário (quem fez o checkin): "); int idUsuario = Integer.parseInt(scanner.nextLine());
+                    System.out.print("ID da Franquia (onde foi feito o checkin): "); int idFranquia = Integer.parseInt(scanner.nextLine());
                     System.out.print("Data (AAAA-MM-DD): "); String data = scanner.nextLine();
                     System.out.print("Hora (HH:MM): "); String hora = scanner.nextLine();
-                    dao.adicionar_checkin(new Checkin(0, idCliente, idUsuario, data, hora));
+                    dao.adicionar_checkin(new Checkin(0, idCliente, idUsuario, idFranquia,data, hora));
                     System.out.println("Check-in adicionado!");
                     break;
                 case 3:

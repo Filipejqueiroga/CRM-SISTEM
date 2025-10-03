@@ -15,11 +15,13 @@ import crm.dao.VendaDAO;
 
 public class Relatorio {
 
-    private ClienteDAO clienteDAO;
-    private VendaDAO vendaDAO;
-    private LeadDAO leadDAO;
-    private FranquiaDAO franquiaDAO;
-    private CheckinDAO checkinDAO;
+    private ClienteDAO clienteDAO = new ClienteDAO();
+    private VendaDAO vendaDAO = new VendaDAO();
+    private LeadDAO leadDAO = new LeadDAO();
+    private FranquiaDAO franquiaDAO = new FranquiaDAO();
+    private CheckinDAO checkinDAO = new CheckinDAO();
+
+    public Relatorio(){}
 
     //relatorio geral de todas as franquias
     public void relatorioGeral(String dataVenda) {
@@ -29,6 +31,7 @@ public class Relatorio {
         int leadsTotal = leads.size();
 
         List<Franquia> franquias = franquiaDAO.listar_franquias();
+        int franquiasTotal = franquias.size();
 
         for(Franquia f : franquias){
             int idFranquia = f.getId();
@@ -55,19 +58,20 @@ public class Relatorio {
 
         // resumo geral
         System.out.println("---------------------------");
-        System.out.println("Total de franquias");
+        System.out.println("Total de franquias: "+ franquiasTotal);
         System.out.println();
         System.out.println("Total de Clientes: " + clientesTotal);
         System.out.println();
-        System.out.println("Faturamento total em "+dataVenda+": R$ " + faturamentoTotal);
-        System.out.println();
         System.out.println("Total de leads cadastrados: "+ leadsTotal);
+        System.out.println();
+        System.out.println("Faturamento total em "+dataVenda+": R$ " + faturamentoTotal);
+        
     }
 
     //relatorio de uma franquia específica
     public void relatorioFranquia(int id_franquia, String dataVenda) {
         List<Cliente> clientesFranquia = clienteDAO.listar_clientes_franquia(id_franquia);
-        List<Checkin> chekinsFranquia = checkinDAO.listar_checkins();
+        List<Checkin> chekinsFranquia = checkinDAO.listar_checkins_franquia(id_franquia);
 
         int clientesTotal = clientesFranquia.size();
         int checkinsTotal = chekinsFranquia.size();

@@ -29,9 +29,9 @@ public class Main {
 
         Relatorio relatorio = new Relatorio();
 
-        int idFranquiaTeste = 1;
+        int idFranquiaTeste = 2;
 
-        String dataTeste = "2025-01-10";
+        String dataTeste = "03/06/25";
 
         // teste do relatorio de uma franquia especifica
         System.out.println("Relatorio da franquia "+idFranquiaTeste+ ":");

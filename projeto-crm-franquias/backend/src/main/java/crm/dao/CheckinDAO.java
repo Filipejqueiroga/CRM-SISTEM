@@ -43,12 +43,43 @@ public class CheckinDAO {
                 int id = rs.getInt("id");
                 int cliente_id = rs.getInt("cliente_id");
                 int usuario_id = rs.getInt("usuario_id");
+                int franquia_id = rs.getInt("franquia_id");
                 String data = rs.getString("data");
                 String hora = rs.getString("hora");
 
-                checkins.add(new Checkin(id, cliente_id, usuario_id, data, hora));
+                checkins.add(new Checkin(id, cliente_id, usuario_id, franquia_id, data, hora));
             }
 
+            ps.close();
+            conexao.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return checkins;
+    }
+
+    public List<Checkin> listar_checkins_franquia(int idFranquia){
+        var checkins = new ArrayList<Checkin>();
+        String url = "jdbc:sqlite:meu_banco.db";
+
+        try {
+            var conexao = DriverManager.getConnection(url);
+            var sql = "SELECT * FROM Checkin WHERE id_franquia = ?";
+            var ps = conexao.prepareStatement(sql);
+            ps.setInt(1, idFranquia);
+            var rs = ps.executeQuery();
+
+            while (rs.next()) {
+                var id = rs.getInt("id");
+                var cliente_id = rs.getInt("cliente_id");
+                var usuario_id = rs.getInt("usuario_id");
+                int franquia_id = rs.getInt("franquia_id");
+                var data = rs.getString("data");
+                var hora = rs.getString("hora");
+
+                checkins.add(new Checkin(id, cliente_id, usuario_id, franquia_id, data, hora));
+            }
+            rs.close();
             ps.close();
             conexao.close();
         } catch (SQLException e) {
