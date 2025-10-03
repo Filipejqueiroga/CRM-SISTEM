@@ -1,19 +1,18 @@
 PRAGMA foreign_keys = ON;
 
+CREATE TABLE IF NOT EXISTS Empresa (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    cnpj TEXT UNIQUE NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS Franquia (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     cidade TEXT NOT NULL,
-    status TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS Cliente (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    numero_telefone TEXT NOT NULL,
-    tipo_plano TEXT NOT NULL,
-    id_franquia INTEGER,
-    FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
+    status TEXT NOT NULL,
+    empresa_id INTEGER NOT NULL,
+    FOREIGN KEY(empresa_id) REFERENCES Empresa(id)
 );
 
 CREATE TABLE IF NOT EXISTS Usuario (
@@ -21,65 +20,86 @@ CREATE TABLE IF NOT EXISTS Usuario (
     email TEXT NOT NULL,
     nome_usuario TEXT NOT NULL,
     senha TEXT NOT NULL,
-    id_franquia INTEGER,
     tipo_usuario TEXT NOT NULL,
-    FOREIGN KEY(id_franquia) REFERENCES Franquia(id)
+    empresa_id INTEGER,
+    franquia_id INTEGER,
+    FOREIGN KEY(empresa_id) REFERENCES Empresa(id),
+    FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
 );
 
-CREATE TABLE IF NOT EXISTS Lead (
+CREATE TABLE IF NOT EXISTS Cliente (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     numero_telefone TEXT NOT NULL,
-    status TEXT NOT NULL
+    tipo_plano TEXT NOT NULL,
+    franquia_id INTEGER,
+    FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
 );
 
 CREATE TABLE IF NOT EXISTS Venda (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     id_cliente INTEGER,
+    franquia_id INTEGER,
     descricao TEXT NOT NULL,
     valor REAL,
-    FOREIGN KEY(id_cliente) REFERENCES Cliente(id)
+    FOREIGN KEY(id_cliente) REFERENCES Cliente(id),
+    FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS Lead (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    numero_telefone TEXT NOT NULL,
+    status TEXT NOT NULL,
+    franquia_id INTEGER,
+    FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
 );
 
 CREATE TABLE IF NOT EXISTS Checkin (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     cliente_id INTEGER,
     usuario_id INTEGER,
+    franquia_id INTEGER,
     data TEXT,
     hora TEXT,
     FOREIGN KEY(cliente_id) REFERENCES Cliente(id),
-    FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
+    FOREIGN KEY(usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY(franquia_id) REFERENCES Franquia(id)
 );
 
-INSERT INTO Franquia (nome, cidade, status) VALUES ('Franquia A', 'Cidade A', 'Ativa'), ('Franquia B', 'Cidade B', 'Ativa');
 
-INSERT INTO Cliente (nome, numero_telefone, tipo_plano, id_franquia) VALUES
-    ('Filipe', '83 8768-3922', 'anual', 1),
-    ('Pedro', '83 8768-3922', 'anual', 1),
-    ('Gabriela', '83 8768-3922', 'anual', 1),
-    ('Bruno', '83 8768-3922', 'semestral', 1),
-    ('Rebeca', '83 8768-3922', 'semestral', 1);
+INSERT INTO Empresa (nome, cnpj) VALUES ('Selfit', '12345678000199');
 
-INSERT INTO Usuario (email, nome_usuario, senha, id_franquia, tipo_usuario) VALUES
-    ('filipe.colgate@gmail.com', 'filipe_ju', 'senha_filipe123', 1, 'admin'),
-    ('pedro.lindo@gmail.com', 'pedro_h', 'senha_pedro456', 1, 'funcionario'),
-    ('gabriela.faraonica@gmail.com', 'gabi_b', 'senha_gabi789', 1, 'funcionario'),
-    ('bruno.aloprado@gmail.com', 'bruno_f', 'senha_bruno101', 1, 'funcionario'),
-    ('rebeca.dyva@gmail.com', 'rebeca_b', 'senha_rebeca212', 1, 'funcionario');
+INSERT INTO Franquia (nome, cidade, status, empresa_id) VALUES
+('Selfit João Pessoa', 'João Pessoa', 'Ativa', 1),
+('Selfit São Paulo', 'São Paulo', 'Ativa', 1);
+
+INSERT INTO Usuario (email, nome_usuario, senha, tipo_usuario, empresa_id)
+VALUES ('admin@selfit.com', 'admin_selfit', 'senha123', 'franqueador', 1);
+
+INSERT INTO Usuario (email, nome_usuario, senha, tipo_usuario, franquia_id)
+VALUES ('joao@selfit.com', 'joao_jp', 'senha456', 'franqueado', 1);
+
+INSERT INTO Usuario (email, nome_usuario, senha, tipo_usuario, franquia_id)
+VALUES ('maria@selfit.com', 'maria_sp', 'senha789', 'funcionario', 2);
+
+INSERT INTO Cliente (nome, numero_telefone, tipo_plano, franquia_id) VALUES
+('Filipe', '83 8768-3922', 'anual', 1),
+('Pedro', '83 9999-1111', 'mensal', 1),
+('Gabriela', '83 2222-3333', 'anual', 2),
+('Bruno', '83 4444-5555', 'semestral', 2);
 
 INSERT INTO Venda (id_cliente, descricao, valor) VALUES
-    (1, 'Pagamento do plano anual - 2025', 1200.00),
-    (2, 'Compra de suplemento (Whey Protein)', 189.90),
-    (4, 'Pagamento do plano semestral - 2º Sem/2025', 650.00),
-    (3, 'Taxa de avaliação física', 80.00),
-    (5, 'Compra de luvas e coqueteleira', 75.50);
+(1, 'Pagamento plano anual - 2025', 1200.00),
+(2, 'Compra suplemento Whey Protein', 180.00),
+(3, 'Taxa de matrícula', 150.00);
 
-INSERT INTO Lead (nome, numero_telefone, status) VALUES
-    ('belarmino', '83 8768-3922','satisfeito'),
-    ('thais', '83 8768-3922','satisfeito'),
-    ('lincoln', '83 8768-3922','satisfeito');
+INSERT INTO Lead (nome, numero_telefone, status, franquia_id) VALUES
+('Thais', '83 8768-3922','em negociação', 1),
+('Lincoln', '83 1234-5678','aguardando resposta', 2);
 
 INSERT INTO Checkin (cliente_id, usuario_id, data, hora) VALUES
-    (1, 1, '19/09/2025', '15:22'),
-    (2, 1, '19/09/2025', '09:56'),
-    (3, 2, '19/09/2025', '14:29');
+(1, 2, '2025-09-19', '15:22'),
+(2, 2, '2025-09-19', '09:56'),
+(3, 3, '2025-09-19', '14:29');
