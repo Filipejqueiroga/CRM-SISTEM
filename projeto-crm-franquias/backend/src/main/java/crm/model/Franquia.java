@@ -50,6 +50,6 @@ public class Franquia {
 
     @Override
     public String toString() {
-        return "Franquia{id=" + id + ", nome='" + nome + "', cidade='" + cidade + "', status='" + status + "'}";
+        return "Franquia{id=" + id + ", nome='" + nome + "', cidade='" + cidade + "', status='" + status + "', tipoNegocio='" + tipoNegocio + "'}";
     }
 }
