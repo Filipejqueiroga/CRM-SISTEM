@@ -33,6 +33,7 @@ public class Relatorio {
         List<Franquia> franquias = franquiaDAO.listar_franquias();
         int franquiasTotal = franquias.size();
 
+        System.out.println("Relatorio Geral: ");
         for(Franquia f : franquias){
             int idFranquia = f.getId();
             
@@ -57,21 +58,22 @@ public class Relatorio {
         }
 
         // resumo geral
+        System.out.println();
         System.out.println("---------------------------");
         System.out.println("Total de franquias: "+ franquiasTotal);
-        System.out.println();
         System.out.println("Total de Clientes: " + clientesTotal);
-        System.out.println();
         System.out.println("Total de leads cadastrados: "+ leadsTotal);
-        System.out.println();
         System.out.println("Faturamento total em "+dataVenda+": R$ " + faturamentoTotal);
-        
+        System.out.println();
     }
 
     //relatorio de uma franquia específica
     public void relatorioFranquia(int id_franquia, String dataVenda) {
         List<Cliente> clientesFranquia = clienteDAO.listar_clientes_franquia(id_franquia);
         List<Checkin> chekinsFranquia = checkinDAO.listar_checkins_franquia(id_franquia);
+
+        Franquia franquia = franquiaDAO.buscar_franquia_por_id(id_franquia);
+        String nomeFranquia = (franquia != null) ? franquia.getNome() : "Franquia Desconhecida";
 
         int clientesTotal = clientesFranquia.size();
         int checkinsTotal = chekinsFranquia.size();
@@ -84,13 +86,10 @@ public class Relatorio {
             faturamentoFranquia += venda.getValor();
         }
 
-        System.out.println("---------------------------");
+        System.out.println("Relatorio da franquia " + nomeFranquia + ":");
         System.out.println();
-        System.out.println(" - Total de clientes: " + clientesTotal);
-        System.out.println();
+        System.out.println(" - Total de clientes: " + clientesTotal);       
         System.out.println(" - Total de checkins: "+ checkinsTotal);
-        System.out.println();
         System.out.println(" - Faturamento em "+ dataVenda +": R$ " + faturamentoFranquia);
-        System.out.println();
     }
 }

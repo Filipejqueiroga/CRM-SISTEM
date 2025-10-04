@@ -17,15 +17,12 @@ public class Main {
 
         int idFranquiaTeste = 2;
 
-        String dataTeste = "03/06/2025";
+        String dataTeste = "06/09/2023";
 
         // teste do relatorio de uma franquia especifica
-        System.out.println("Relatorio da franquia "+idFranquiaTeste+ ":");
-
         relatorio.relatorioFranquia(idFranquiaTeste, dataTeste);
 
         //teste do relatorio geral
-        System.out.println("Relatorio Geral: ");
         relatorio.relatorioGeral(dataTeste);
     }
 }

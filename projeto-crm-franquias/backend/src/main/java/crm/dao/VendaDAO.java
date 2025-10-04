@@ -72,8 +72,7 @@ public class VendaDAO {
         String sql = """
         SELECT v.id, v.id_cliente, v.descricao, v.valor, v.data
         FROM Venda v
-        JOIN Cliente c ON v.id_cliente = c.id
-        WHERE c.franquia_id = ? AND v.data = ?
+        WHERE v.franquia_id = ? AND v.data = ?
         """;
 
         try {
