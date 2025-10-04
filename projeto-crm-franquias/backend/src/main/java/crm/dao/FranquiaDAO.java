@@ -98,4 +98,30 @@ public class FranquiaDAO {
         }
     }
     
+    public Franquia buscar_franquia_por_id(int idFranquia){
+    Franquia franquia = null;
+    String url = "jdbc:sqlite:meu_banco.db";
+
+    try {
+        var conexao = DriverManager.getConnection(url);
+        var ps = conexao.prepareStatement("SELECT * FROM Franquia WHERE id = ?");
+        
+        ps.setInt(1, idFranquia);
+        
+        try (var rs = ps.executeQuery()) {
+            if (rs.next()) {
+                // instancia e popula o objeto franquia
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cidade = rs.getString("cidade");
+                String status = rs.getString("status");
+        
+                franquia = new Franquia(id, nome, cidade, status); 
+            }
+        }
+    } catch (SQLException e) {
+        System.err.println("Erro ao buscar franquia por ID: " + e.getMessage());
+    }
+    return franquia;
+}
 }

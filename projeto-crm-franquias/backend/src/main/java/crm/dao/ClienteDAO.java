@@ -63,7 +63,7 @@ public class ClienteDAO{
 
         }
         catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar leads.", e);
+            throw new RuntimeException("Erro ao listar clientes.", e);
         }
 
         return clientes;
