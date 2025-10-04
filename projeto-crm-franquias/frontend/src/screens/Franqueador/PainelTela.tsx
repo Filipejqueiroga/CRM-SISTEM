@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Franquia, LeadFranqueadora } from '../../types';
 import { getFranquias, getLeadsFranqueadora } from '../../api/servicos';
 import styles from './PainelTela.module.css';
+import ItemLista from '../../components/ItemLista'; // Importe o componente ItemLista
 
 const PainelTela: React.FC = () => {
   const [franquias, setFranquias] = useState<Franquia[]>([]);
   const [leads, setLeads] = useState<LeadFranqueadora[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const carregarDados = async () => {
@@ -21,6 +24,10 @@ const PainelTela: React.FC = () => {
 
   const receitaTotal = franquias.reduce((acc, f) => acc + f.totalVendas, 0);
   const totalClientes = franquias.reduce((acc, f) => acc + f.totalClientes, 0);
+
+  const handleFranquiaClick = (id: number) => {
+    navigate(`/franqueador/franquia/${id}`);
+  };
 
   if (loading) return <p>Carregando...</p>;
 
@@ -38,20 +45,21 @@ const PainelTela: React.FC = () => {
       <div className={styles.lista}>
         <h2>Lista de Franquias</h2>
         {franquias.map(franquia => (
-          <div key={franquia.id} className={styles.itemFranquia}>
+          // Usando o componente ItemLista com onClick
+          <ItemLista key={franquia.id} onClick={() => handleFranquiaClick(franquia.id)}>
             <span>{franquia.nome} - {franquia.cidade} ({franquia.status})</span>
             <span>Clientes: {franquia.totalClientes} / Vendas: {franquia.totalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
-          </div>
+          </ItemLista>
         ))}
       </div>
       
       <div className={styles.lista}>
         <h2>Leads (Interessados em Abrir Franquia)</h2>
         {leads.map(lead => (
-            <div key={lead.id} className={styles.itemLead}>
+            <ItemLista key={lead.id}>
                 <span>{lead.nome} - {lead.localidade}</span>
                 <span>{lead.descricao}</span>
-            </div>
+            </ItemLista>
         ))}
       </div>
     </div>

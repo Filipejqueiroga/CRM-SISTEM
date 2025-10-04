@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './PainelFranqueadoTela.module.css';
 import { CLIENTES_FRANQUIA_A_MOCK, CHECKINS_FRANQUIA_A_MOCK } from '../../api/mockDados';
 
@@ -20,38 +21,29 @@ const PainelFranqueadoTela: React.FC = () => {
         <p>Leads em Aberto: {resumoFranquia.leads}</p>
       </div>
 
+      {/* SEÇÃO DE NAVEGAÇÃO ADICIONADA */}
       <div className={styles.secao}>
-        <h2>Cadastrar Cliente</h2>
-        <form className={styles.formCadastro}>
-          <input type="text" placeholder="Nome" />
-          <input type="text" placeholder="Telefone" />
-          <select>
-            <option value="mensal">Plano Mensal</option>
-            <option value="semestral">Plano Semestral</option>
-            <option value="anual">Plano Anual</option>
-          </select>
-          <button type="submit">Cadastrar Cliente</button>
-        </form>
+        <h2>Ações Rápidas</h2>
+        <div className={styles.acoes}>
+          <Link to="/franqueado/adicionar-cliente" className={styles.botaoAcao}>
+            Cadastrar Novo Cliente
+          </Link>
+          <Link to="/franqueado/clientes" className={styles.botaoAcao}>
+            Ver Meus Clientes
+          </Link>
+          <Link to="/franqueado/checkin" className={styles.botaoAcao}>
+            Registrar Check-in
+          </Link>
+        </div>
       </div>
 
       <div className={styles.secao}>
-        <h2>Registrar Venda</h2>
-        <form className={styles.formCadastro}>
-          <input type="text" placeholder="Nome do Cliente" />
-          <input type="text" placeholder="Descrição da Venda" />
-          <input type="number" placeholder="Valor (R$)" />
-          <button type="submit">Registrar Venda</button>
-        </form>
-      </div>
-
-      <div className={styles.secao}>
-        <h2>Lista de Clientes</h2>
+        <h2>Lista de Clientes (Recentes)</h2>
         <div className={styles.lista}>
-          {CLIENTES_FRANQUIA_A_MOCK.map(cliente => (
+          {CLIENTES_FRANQUIA_A_MOCK.slice(0, 3).map(cliente => (
             <div key={cliente.id} className={styles.itemLista}>
               <span>{cliente.nome}</span>
               <span>Plano: {cliente.plano} ({cliente.statusPlano})</span>
-              <span>Última Compra: {cliente.historicoCompras[0]?.data || 'N/A'}</span>
             </div>
           ))}
         </div>
@@ -60,7 +52,7 @@ const PainelFranqueadoTela: React.FC = () => {
       <div className={styles.secao}>
         <h2>Check-ins Recentes</h2>
         <div className={styles.lista}>
-            {CHECKINS_FRANQUIA_A_MOCK.map(checkin => (
+            {CHECKINS_FRANQUIA_A_MOCK.slice(0, 3).map(checkin => (
                 <div key={checkin.id} className={styles.itemLista}>
                     <span>{checkin.nomeCliente}</span>
                     <span>{checkin.data}</span>

@@ -58,3 +58,27 @@
   padding: 0.8rem;
   border-bottom: 1px solid #e0e0e0;
 }
+
+.acoes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.botaoAcao {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.botaoAcao:hover {
+  background-color: #0056b3;
+}
