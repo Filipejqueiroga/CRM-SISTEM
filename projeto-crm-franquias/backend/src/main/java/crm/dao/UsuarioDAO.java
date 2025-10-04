@@ -177,11 +177,10 @@ public class UsuarioDAO {
         String nomeUsuario = rs.getString("nome_usuario");
         String senha = rs.getString("senha");
         int empresaId = rs.getInt("empresa_id");
-        int tipoUsuario = 2; // Tipo interno usado no construtor Java
 
         String nomeEmpresa = buscarNomeEmpresaPorId(empresaId, conexao);
 
-        return new Franqueador(id, email, nomeUsuario, senha, tipoUsuario, nomeEmpresa);
+        return new Franqueador(id, email, nomeUsuario, senha, nomeEmpresa);
     }
     
     private String buscarNomeFranquiaPorId(int id, Connection conexao) throws SQLException {
