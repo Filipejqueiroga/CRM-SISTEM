@@ -1,7 +1,7 @@
 package crm.app;
 
 import crm.dao.*;
-import crm.model.*;
+import crm.model.*; // Certifique-se de que a classe Relatorio está neste pacote ou importe-a especificamente
 import java.util.Scanner;
 
 public class App {
@@ -13,6 +13,12 @@ public class App {
     private static final LeadDAO leadDAO = new LeadDAO();
     private static final VendaDAO vendaDAO = new VendaDAO();
     private static final CheckinDAO checkinDAO = new CheckinDAO();
+
+    // <-- MODIFICAÇÃO 1: Instanciar o serviço de Relatório aqui.
+    // Isso assume que você tem a classe Relatorio que recebe os DAOs no construtor, como discutimos.
+    // Linha corrigida
+    private static final Relatorio relatorioService = new Relatorio();
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -74,10 +80,6 @@ public class App {
     /**
      * Lida com o processo de cadastro de um novo usuário.
      */
-// Dentro da classe App.java
-
-// Dentro da classe App.java, substitua o método realizarCadastro por este:
-
     private static void realizarCadastro(Scanner scanner) {
         System.out.println("\n--- TELA DE CADASTRO ---");
         System.out.print("Qual o tipo de usuário? (1: Franqueado, 2: Franqueador): ");
@@ -105,7 +107,6 @@ public class App {
             System.out.print("\nDigite o ID da franquia escolhida: ");
             int idFranquiaEscolhida = Integer.parseInt(scanner.nextLine());
 
-            // Verificamos se o ID escolhido é válido
             boolean idValido = listaDeFranquias.stream().anyMatch(f -> f.getId() == idFranquiaEscolhida);
 
             if (!idValido) {
@@ -113,16 +114,17 @@ public class App {
                 return;
             }
             
-            // Agora, o construtor do Franqueado não precisa mais do nome da franquia,
-            // pois essa informação virá do banco de dados quando necessário.
-            // Precisamos ajustar o construtor de Franqueado para aceitar só o ID.
-            // Exemplo de construtor: public Franqueado(int id, String email, ..., int idFranquia)
-            // Por enquanto, vamos manter o nome placeholder para não quebrar o código.
-            novoUsuario = new Franqueado(0, email, nomeUsuario, senha, "Nome Placeholder", idFranquiaEscolhida);
+            // Supondo que o construtor do Franqueado aceite (id, email, nomeUsuario, senha, nomeFranquia, idFranquiaLocal)
+            // O nome da franquia aqui pode ser um placeholder, pois o que importa é o ID.
+            String nomeFranquiaPlaceholder = listaDeFranquias.stream()
+                .filter(f -> f.getId() == idFranquiaEscolhida).findFirst().get().getNome();
+            
+            novoUsuario = new Franqueado(0, email, nomeUsuario, senha, nomeFranquiaPlaceholder, idFranquiaEscolhida);
         
         } else if (tipo == 2) { // Criando um Franqueador
             System.out.print("Nome da Empresa: "); String nomeEmpresa = scanner.nextLine();
-            novoUsuario = new Franqueador(0, email, nomeUsuario, senha, 2, nomeEmpresa);
+            // Linha Corrigida:
+            novoUsuario = new Franqueador(0, email, nomeUsuario, senha, nomeEmpresa);
         }
 
         if (novoUsuario != null) {
@@ -169,36 +171,39 @@ public class App {
             case 3: gerenciarVendas(scanner, vendaDAO); break;
             case 4: gerenciarLeads(scanner, leadDAO); break;
             case 5: gerenciarCheckins(scanner, checkinDAO); break;
-            case 6: System.out.println("Funcionalidade de Relatórios a ser implementada."); break;
+            case 6: exibirMenuRelatorios(franqueado, scanner); break;
             case 0: break;
             default: System.out.println("Opção inválida!"); break;
         }
     }
+
+    // Dentro da classe App.java
 
     private static void tratarOpcaoFranqueador(int opcao, Franqueador franqueador, Scanner scanner) {
-        // Lógica baseada no menu definido na classe Franqueador
         switch (opcao) {
-            case 1: gerenciarUsuarios(scanner, usuarioDAO); break; // 1- Listar Franqueados (Gerenciar Usuários)
-            case 2: gerenciarClientes(scanner, clienteDAO); break; // 2- Consultar Clientes
-            case 3: gerenciarLeads(scanner, leadDAO); break; // 3- Consultar Leads
-            case 4: System.out.println("Funcionalidade de Relatórios a ser implementada."); break; // 4- Gerar Relatórios
+            case 1: gerenciarUsuarios(scanner, usuarioDAO); break;
+            case 2: gerenciarClientes(scanner, clienteDAO); break;
+            case 3: gerenciarLeads(scanner, leadDAO); break;
+            case 4: exibirMenuRelatorios(franqueador, scanner); break;
+            case 5: gerenciarFranquias(scanner, franquiaDAO); break; // <-- ADICIONE ESTA LINHA
             case 0: break;
             default: System.out.println("Opção inválida!"); break;
         }
     }
 
-    // ===================================================================================
-    //  MÉTODOS DE GERENCIAMENTO ORIGINAIS (REAPROVEITADOS)
-    // ===================================================================================
-
-    private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
+// SUBSTITUA O MÉTODO ANTIGO POR ESTE CORRIGIDO
+    private static void exibirMenuRelatorios(Usuario usuarioLogado, Scanner scanner) {
         int opcao = -1;
+
         while (opcao != 0) {
-            System.out.println("\n--- Gerenciar Franquias ---");
-            System.out.println("1. Listar todas");
-            System.out.println("2. Adicionar nova");
-            System.out.println("3. Atualizar existente");
-            System.out.println("4. Excluir");
+            System.out.println("\n--- Menu de Relatórios ---");
+
+            if (usuarioLogado instanceof Franqueador) {
+                System.out.println("1. Relatório Geral de Todas as Franquias");
+                System.out.println("2. Relatório de uma Franquia Específica");
+            } else if (usuarioLogado instanceof Franqueado) {
+                System.out.println("1. Gerar Relatório da Minha Franquia");
+            }
             System.out.println("0. Voltar ao Menu Anterior");
             System.out.print("Escolha uma opção: ");
 
@@ -206,53 +211,124 @@ public class App {
                 opcao = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("Erro: Por favor, digite um número válido.");
-                continue; 
+                continue;
             }
 
-            switch (opcao) {
-                case 1: 
-                    System.out.println("\nListando franquias...");
-                    var lista = dao.listar_franquias();
-                    if (lista.isEmpty()) {
-                        System.out.println("Nenhuma franquia cadastrada.");
-                    } else {
-                        for (var f : lista) {
-                            System.out.printf("ID: %d | Nome: %s | Cidade: %s | Status: %s | Tipo: %s\n",
-                                    f.getId(), f.getNome(), f.getCidade(), f.getStatus(), f.getTipoNegocio());
-                        }
-                    }
-                    break;
-                case 2: 
-                    System.out.println("\nAdicionando nova franquia...");
-                    System.out.print("Nome: "); String nome = scanner.nextLine();
-                    System.out.print("Cidade: "); String cidade = scanner.nextLine();
-                    System.out.print("Status (Ativa/Inativa): "); String status = scanner.nextLine();
-                    System.out.print("Tipo de Negócio (ex: Academia): "); String tipoNegocio = scanner.nextLine();
-                    Franquia novaFranquia = new Franquia(0, nome, cidade, status, tipoNegocio);
-                    dao.adicionar_franquias(novaFranquia);
-                    System.out.println("Franquia adicionada com sucesso!");
-                    break;
-                case 3: 
-                    System.out.println("\nAtualizando franquia...");
-                    System.out.print("Digite o ID da franquia para atualizar: "); int idAtualizar = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Novo Nome: "); String novoNome = scanner.nextLine();
-                    System.out.print("Nova Cidade: "); String novaCidade = scanner.nextLine();
-                    System.out.print("Novo Status: "); String novoStatus = scanner.nextLine();
-                    System.out.print("Novo Tipo de Negócio: "); String novoTipoNegocio = scanner.nextLine();
-                    Franquia franquiaAtualizada = new Franquia(idAtualizar, novoNome, novaCidade, novoStatus, novoTipoNegocio);
-                    dao.atualizar_franquias(franquiaAtualizada);
-                    System.out.println("Franquia atualizada com sucesso!");
-                    break;
-                case 4: 
-                    System.out.println("\nExcluindo franquia...");
-                    System.out.print("Digite o ID da franquia para excluir: "); int idExcluir = Integer.parseInt(scanner.nextLine());
-                    dao.excluir_franquias(idExcluir);
-                    System.out.println("Franquia excluída com sucesso!");
-                    break;
-                case 0: break;
-                default: System.out.println("Opção inválida!"); break;
+            if (usuarioLogado instanceof Franqueador) {
+                switch (opcao) {
+                    case 1:
+                        System.out.print("Digite a data para o faturamento (ex: 06/09/2023): ");
+                        String dataGeral = scanner.nextLine();
+                        relatorioService.relatorioGeral(dataGeral);
+                        break;
+                    case 2:
+                        System.out.println("\nLista de Franquias Disponíveis:");
+                        franquiaDAO.listar_franquias().forEach(f ->
+                                System.out.printf("ID: %d - %s\n", f.getId(), f.getNome())
+                        );
+                        System.out.print("Digite o ID da franquia para o relatório: ");
+                        int idFranquia = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Digite a data para o faturamento (ex: 06/09/2023): ");
+                        String dataEspecifica = scanner.nextLine();
+                        relatorioService.relatorioFranquia(idFranquia, dataEspecifica);
+                        break;
+                    case 0:
+                        // Apenas sai do loop, voltando ao menu anterior
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+            } else if (usuarioLogado instanceof Franqueado) {
+                Franqueado franqueado = (Franqueado) usuarioLogado;
+                switch (opcao) {
+                    case 1:
+                        System.out.print("Digite a data para o faturamento (ex: 06/09/2023): ");
+                        String dataFranquia = scanner.nextLine();
+                        relatorioService.relatorioFranquia(franqueado.getIdFranquiaLocal(), dataFranquia);
+                        break;
+                    case 0:
+                        // Apenas sai do loop, voltando ao menu anterior
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
             }
         }
+    }
+
+
+    // ===================================================================================
+    //  MÉTODOS DE GERENCIAMENTO (Nenhuma alteração necessária aqui)
+    // ===================================================================================
+
+    private static void gerenciarFranquias(Scanner scanner, FranquiaDAO dao) {
+            int opcao = -1;
+            while (opcao != 0) {
+                System.out.println("\n--- Gerenciar Franquias ---");
+                System.out.println("1. Listar todas");
+                System.out.println("2. Adicionar nova");
+                System.out.println("3. Atualizar existente");
+                System.out.println("4. Excluir");
+                System.out.println("0. Voltar ao Menu Anterior");
+                System.out.print("Escolha uma opção: ");
+
+                try {
+                    opcao = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro: Por favor, digite um número válido.");
+                    continue;
+                }
+
+                switch (opcao) {
+                    case 1:
+                        System.out.println("\nListando franquias...");
+                        var lista = dao.listar_franquias();
+                        if (lista.isEmpty()) {
+                            System.out.println("Nenhuma franquia cadastrada.");
+                        } else {
+                            for (var f : lista) {
+                                System.out.printf("ID: %d | Nome: %s | Cidade: %s | Status: %s | Tipo: %s\n",
+                                        f.getId(), f.getNome(), f.getCidade(), f.getStatus(), f.getTipoNegocio());
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        System.out.println("\nAdicionando nova franquia...");
+                        System.out.print("Nome: "); String nome = scanner.nextLine();
+                        System.out.print("Cidade: "); String cidade = scanner.nextLine();
+                        System.out.print("Status (Ativa/Inativa): "); String status = scanner.nextLine();
+                        System.out.print("Tipo de Negócio (ex: Academia): "); String tipoNegocio = scanner.nextLine();
+                        Franquia novaFranquia = new Franquia(0, nome, cidade, status, tipoNegocio);
+                        dao.adicionar_franquias(novaFranquia);
+                        System.out.println("Franquia adicionada com sucesso!");
+                        break;
+
+                    case 3:
+                        System.out.println("\nAtualizando franquia...");
+                        System.out.print("Digite o ID da franquia para atualizar: "); int idAtualizar = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Novo Nome: "); String novoNome = scanner.nextLine();
+                        System.out.print("Nova Cidade: "); String novaCidade = scanner.nextLine();
+                        System.out.print("Novo Status: "); String novoStatus = scanner.nextLine();
+                        System.out.print("Novo Tipo de Negócio: "); String novoTipoNegocio = scanner.nextLine();
+                        Franquia franquiaAtualizada = new Franquia(idAtualizar, novoNome, novaCidade, novoStatus, novoTipoNegocio);
+                        dao.atualizar_franquias(franquiaAtualizada);
+                        System.out.println("Franquia atualizada com sucesso!");
+                        break;
+
+                    case 4:
+                        System.out.println("\nExcluindo franquia...");
+                        System.out.print("Digite o ID da franquia para excluir: "); int idExcluir = Integer.parseInt(scanner.nextLine());
+                        dao.excluir_franquias(idExcluir);
+                        System.out.println("Franquia excluída com sucesso!");
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                        break;
+                }
+            }
     }
 
     private static void gerenciarClientes(Scanner scanner, ClienteDAO dao) {
@@ -271,8 +347,8 @@ public class App {
                 case 1:
                     System.out.println("\nListando clientes...");
                     dao.listar_clientes().forEach(c -> System.out.printf(
-                        "ID: %d | Nome: %s | Tel: %s | Plano: %s | Franquia ID: %d\n",
-                        c.getId(), c.getNome(), c.getNumeroTelefone(), c.getTipoPlano(), c.getIdFranquia()
+                            "ID: %d | Nome: %s | Tel: %s | Plano: %s | Franquia ID: %d\n",
+                            c.getId(), c.getNome(), c.getNumeroTelefone(), c.getTipoPlano(), c.getIdFranquia()
                     ));
                     break;
                 case 2:
@@ -314,7 +390,7 @@ public class App {
             System.out.println("4. Excluir");
             System.out.println("0. Voltar ao Menu Anterior");
             System.out.print("Escolha uma opção: ");
-            
+
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
@@ -328,12 +404,11 @@ public class App {
                     dao.listar_usuarios().forEach(System.out::println);
                     break;
                 case 2:
-                    // A função de adicionar foi movida para o cadastro geral, mas pode ser mantida
-                    // aqui para que um Franqueador adicione outros usuários.
-                    realizarCadastro(scanner); 
+                    // Reutiliza a função de cadastro geral
+                    realizarCadastro(scanner);
                     break;
                 case 3:
-                    System.out.println("\nFuncionalidade de atualização precisa ser adaptada.");
+                    System.out.println("\nFuncionalidade de atualização precisa ser adaptada para os diferentes tipos de usuário.");
                     break;
                 case 4:
                     System.out.println("\nExcluindo usuário...");
@@ -361,8 +436,8 @@ public class App {
                 case 1:
                     System.out.println("\nListando leads...");
                     dao.listar_leads().forEach(l -> System.out.printf(
-                        "ID: %d | Nome: %s | Telefone: %s | Status: %s\n",
-                        l.getId(), l.getNome(), l.getNumeroTelefone(), l.getStatus()
+                            "ID: %d | Nome: %s | Telefone: %s | Status: %s\n",
+                            l.getId(), l.getNome(), l.getNumeroTelefone(), l.getStatus()
                     ));
                     break;
                 case 2:
@@ -408,8 +483,8 @@ public class App {
                 case 1:
                     System.out.println("\nListando vendas...");
                     dao.listar_vendas().forEach(v -> System.out.printf(
-                        "ID: %d | Cliente ID: %d | Descrição: %s | Valor: %.2f | Data: %s\n",
-                        v.getId(), v.getIdCliente(), v.getDescricao(), v.getValor(), v.getData()
+                            "ID: %d | Cliente ID: %d | Descrição: %s | Valor: %.2f | Data: %s\n",
+                            v.getId(), v.getIdCliente(), v.getDescricao(), v.getValor(), v.getData()
                     ));
                     break;
                 case 2:
@@ -422,7 +497,7 @@ public class App {
                     System.out.println("Venda adicionada!");
                     break;
                 case 3:
-                     System.out.println("\nAtualizando venda...");
+                    System.out.println("\nAtualizando venda...");
                     System.out.print("ID da venda a atualizar: "); int idUpd = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do Cliente: "); int idClienteUpd = Integer.parseInt(scanner.nextLine());
                     System.out.print("Nova Descrição: "); String descUpd = scanner.nextLine();
@@ -456,8 +531,9 @@ public class App {
                 case 1:
                     System.out.println("\nListando check-ins...");
                     dao.listar_checkins().forEach(ch -> System.out.printf(
-                        "ID: %d | Cliente ID: %d | Usuário ID: %d | Franquia ID: %d | Data: %s | Hora: %s\n",
-                        ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getData(), ch.getHora()
+                            // A linha abaixo foi corrigida para incluir ch.getFranquiaId()
+                            "ID: %d | Cliente ID: %d | Usuário ID: %d | Franquia ID: %d | Data: %s | Hora: %s\n",
+                            ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getFranquiaId(), ch.getData(), ch.getHora()
                     ));
                     break;
                 case 2:
@@ -467,7 +543,7 @@ public class App {
                     System.out.print("ID da Franquia (onde foi feito o checkin): "); int idFranquia = Integer.parseInt(scanner.nextLine());
                     System.out.print("Data (AAAA-MM-DD): "); String data = scanner.nextLine();
                     System.out.print("Hora (HH:MM): "); String hora = scanner.nextLine();
-                    dao.adicionar_checkin(new Checkin(0, idCliente, idUsuario, idFranquia,data, hora));
+                    dao.adicionar_checkin(new Checkin(0, idCliente, idUsuario, idFranquia, data, hora));
                     System.out.println("Check-in adicionado!");
                     break;
                 case 3:
