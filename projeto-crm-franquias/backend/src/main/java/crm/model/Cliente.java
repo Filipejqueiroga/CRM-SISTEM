@@ -1,12 +1,22 @@
 package crm.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String numeroTelefone;
     private String tipoPlano;
     private int idFranquia;
+
+    public Cliente(){}
 
     public Cliente(int id, String nome, String numeroTelefone, String tipoPlano, int idFranquia) {
         this.id = id;
