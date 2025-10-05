@@ -6,7 +6,7 @@ import Cartao from '../../components/Cartao';
 import LinhaInfo from '../../components/LinhaInfo';
 
 const ListaClientesTela: React.FC = () => {
-  const clientes = CLIENTES_FRANQUIA_A_MOCK; // Em um app real, viria de uma API
+  const clientes = CLIENTES_FRANQUIA_A_MOCK; 
 
   return (
     <div className={styles.container}>

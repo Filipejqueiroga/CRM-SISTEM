@@ -8,9 +8,7 @@ const AdicionarClienteTela: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Lógica para enviar os dados para a API
     alert(`Cliente cadastrado!\nNome: ${nome}\nTelefone: ${telefone}\nPlano: ${plano}`);
-    // Limpar formulário
     setNome('');
     setTelefone('');
     setPlano('mensal');
