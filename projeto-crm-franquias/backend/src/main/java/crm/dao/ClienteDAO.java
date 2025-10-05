@@ -1,147 +1,152 @@
 package crm.dao;
 
+import crm.model.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO (Data Access Object) para a entidade Cliente.
+ * Esta classe centraliza todas as operações de banco de dados (CRUD)
+ * relacionadas aos clientes do sistema.
+ *
+ * @version 1.1
+ * @since 2025-10-05
+ */
+public class ClienteDAO {
 
-import crm.model.Cliente;
+    /**
+     * URL de conexão com o banco de dados SQLite.
+     * Definida como uma constante para facilitar a manutenção.
+     */
+    private static final String DATABASE_URL = "jdbc:sqlite:meu_banco.db";
 
+    /**
+     * Insere um novo cliente no banco de dados.
+     *
+     * @param cliente O objeto {@link Cliente} com os dados a serem persistidos.
+     */
+    public void adicionar_clientes(Cliente cliente) {
+        String sql = "INSERT INTO Cliente(nome, numero_telefone, tipo_plano, franquia_id) VALUES (?, ?, ?, ?)";
 
-public class ClienteDAO{
-
-    public void adicionar_clientes(Cliente cliente){
-        String url = "jdbc:sqlite:meu_banco.db";
-
-        try {
-            var conexao = DriverManager.getConnection(url);
-            var sql = "INSERT INTO Cliente(nome, numero_telefone, tipo_plano, franquia_id) VALUES (? , ?, ?, ?)";
-            var ps = conexao.prepareStatement(sql);
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement ps = conexao.prepareStatement(sql)) {
 
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getNumeroTelefone());
             ps.setString(3, cliente.getTipoPlano());
-            ps.setInt(4, cliente.getIdFranquia());            
+            ps.setInt(4, cliente.getIdFranquia());
             ps.execute();
 
-            ps.close();
-            conexao.close();
-                
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar cliente.", e);
         }
     }
-    
-    public List<Cliente> listar_clientes(){
+
+    /**
+     * Retorna uma lista com todos os clientes cadastrados no banco de dados.
+     *
+     * @return Uma lista de objetos {@link Cliente}. Se não houver clientes, a lista estará vazia.
+     */
+    public List<Cliente> listar_clientes() {
         var clientes = new ArrayList<Cliente>();
-        String url = "jdbc:sqlite:meu_banco.db";
+        String sql = "SELECT * FROM Cliente";
 
-        try {
-        var conexao = DriverManager.getConnection(url);
-        var sql = "SELECT * FROM Cliente";
-        var ps = conexao.prepareStatement(sql);
-        var rs = ps.executeQuery(); // execute Query é tipo uma escada pela tabela
-
-        while (rs.next()){
-            var id = rs.getInt("id");
-            var nome = rs.getString("nome");
-            var numero_telefone = rs.getString("numero_telefone");
-            var tipo_plano = rs.getString("tipo_plano");
-            var id_franquia = rs.getInt("franquia_id");
-
-             var cliente = new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia);
-
-             clientes.add(cliente);
-        }
-
-        ps.close();
-        conexao.close();
-
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar leads.", e);
-        }
-
-        return clientes;
-
-    }
-
-    public List<Cliente> listar_clientes_franquia(int idFranquia){
-        var clientes = new ArrayList<Cliente>();
-        String url = "jdbc:sqlite:meu_banco.db";
-
-        try {
-            var conexao = DriverManager.getConnection(url);
-            var sql = "SELECT * FROM Cliente WHERE franquia_id = ?";
-            var ps = conexao.prepareStatement(sql);
-            ps.setInt(1, idFranquia);
-            var rs = ps.executeQuery();
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement ps = conexao.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                var id = rs.getInt("id");
-                var nome = rs.getString("nome");
-                var numero_telefone = rs.getString("numero_telefone");
-                var tipo_plano = rs.getString("tipo_plano");
-                var id_franquia = rs.getInt("franquia_id");
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String numero_telefone = rs.getString("numero_telefone");
+                String tipo_plano = rs.getString("tipo_plano");
+                int id_franquia = rs.getInt("franquia_id");
 
-                var cliente = new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia);
-                clientes.add(cliente);
+                clientes.add(new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia));
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar clientes.", e);
         }
         return clientes;
     }
 
-    public void excluir_clientes(Integer id_cliente){
-        String url = "jdbc:sqlite:meu_banco.db";
+    /**
+     * Retorna uma lista de clientes pertencentes a uma franquia específica.
+     *
+     * @param idFranquia O ID da franquia para filtrar os clientes.
+     * @return Uma lista de objetos {@link Cliente} da franquia especificada.
+     */
+    public List<Cliente> listar_clientes_franquia(int idFranquia) {
+        var clientes = new ArrayList<Cliente>();
+        String sql = "SELECT * FROM Cliente WHERE franquia_id = ?";
 
-        try {
-            var conexao = DriverManager.getConnection(url);
-            var sql = "DELETE FROM Cliente WHERE id = ?";
-            var ps = conexao.prepareStatement(sql);
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement ps = conexao.prepareStatement(sql)) {
+            
+            ps.setInt(1, idFranquia);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String numero_telefone = rs.getString("numero_telefone");
+                    String tipo_plano = rs.getString("tipo_plano");
+                    int id_franquia = rs.getInt("franquia_id");
+
+                    clientes.add(new Cliente(id, nome, numero_telefone, tipo_plano, id_franquia));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar clientes por franquia.", e);
+        }
+        return clientes;
+    }
+
+    /**
+     * Exclui um cliente do banco de dados com base no seu ID.
+     *
+     * @param id_cliente O ID do cliente a ser excluído.
+     */
+    public void excluir_clientes(Integer id_cliente) {
+        String sql = "DELETE FROM Cliente WHERE id = ?";
+
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement ps = conexao.prepareStatement(sql)) {
 
             ps.setInt(1, id_cliente);
-            
             ps.execute();
 
-            ps.close();
-            conexao.close();
-                
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Erro ao excluir lead.", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao excluir cliente.", e);
         }
     }
 
-    public void atualizar_clientes(Cliente cliente){
-        String url = "jdbc:sqlite:meu_banco.db";
+    /**
+     * Atualiza os dados de um cliente existente no banco de dados.
+     * O ID do cliente a ser atualizado é obtido do próprio objeto.
+     *
+     * @param cliente O objeto {@link Cliente} com os dados atualizados.
+     */
+    public void atualizar_clientes(Cliente cliente) {
+        String sql = "UPDATE Cliente SET nome = ?, numero_telefone = ?, tipo_plano = ?, franquia_id = ? WHERE id = ?";
 
-        try {
-            var conexao = DriverManager.getConnection(url);
-            var sql = "UPDATE Cliente SET nome = ?, numero_telefone = ?, tipo_plano = ?, franquia_id = ? WHERE id = ?";
-            var ps = conexao.prepareStatement(sql);
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement ps = conexao.prepareStatement(sql)) {
 
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getNumeroTelefone());
             ps.setString(3, cliente.getTipoPlano());
             ps.setInt(4, cliente.getIdFranquia());
             ps.setInt(5, cliente.getId());
-            
             ps.execute();
 
-            ps.close();
-            conexao.close();
-                
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar cliente.", e);
         }
-        catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar lead.", e);
-        }
-    }   
+    }
 }
-
