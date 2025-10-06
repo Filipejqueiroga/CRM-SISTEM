@@ -17,7 +17,7 @@ public class Venda {
     private double valor;
     private String data;
 
-     public Venda() {}
+    public Venda() {}
 
     public Venda(Integer id, int idCliente, int idFranquia, String descricao, double valor, String data) {
         this.id = id;
@@ -27,6 +27,14 @@ public class Venda {
         this.valor = valor;
         this.data = data;
     }
+
+    public Venda(int idCliente, int idFranquia, String descricao, double valor, String data) {
+        this.idCliente = idCliente;
+        this.idFranquia = idFranquia;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.data = data;
+  }
 
     public Venda(int idCliente, String descricao, double valor) {
         this(null, idCliente, 0, descricao, valor, null); 

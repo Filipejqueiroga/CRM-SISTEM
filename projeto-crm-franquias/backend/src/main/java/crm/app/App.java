@@ -341,7 +341,7 @@ private static void gerenciarUsuarios(Scanner scanner, UsuarioDAO dao) {
                     System.out.print("Nova Descrição: "); String descUpd = scanner.nextLine();
                     System.out.print("Novo Valor: "); double valorUpd = Double.parseDouble(scanner.nextLine());
                     System.out.print("Nova Data: "); String dataUpd = scanner.nextLine();
-                    dao.atualizar_venda(new Venda(idUpd, idClienteUpd, idCliente, descUpd, valorUpd, dataUpd));
+                    dao.atualizar_venda(new Venda(idUpd, idClienteUpd, descUpd, valorUpd, dataUpd));
                     System.out.println("Venda atualizada!");
                     break;
                 case 4:
