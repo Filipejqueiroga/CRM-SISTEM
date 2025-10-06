@@ -1,12 +1,22 @@
 package crm.model;
 
+import jakarta.persistence.*;
+
+@Entity 
+@Table(name = "Lead")
 public class Lead {
-    private int id;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
+    @Column(name = "numero_telefone")
     private String numeroTelefone;
     private String status;
 
-    public Lead(int id, String nome, String numeroTelefone, String status) {
+    public Lead(){}
+
+    public Lead(Integer id, String nome, String numeroTelefone, String status) {
         this.id = id;
         this.nome = nome;
         this.numeroTelefone = numeroTelefone;
@@ -17,7 +27,7 @@ public class Lead {
         this(-1, nome, numeroTelefone, status);
     }
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getNome() { return nome; }
 
@@ -25,7 +35,7 @@ public class Lead {
 
     public String getStatus() { return status; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public void setNome(String nome) { this.nome = nome; }
 

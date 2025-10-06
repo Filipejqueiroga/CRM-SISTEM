@@ -1,14 +1,26 @@
 package crm.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Checkin")
 public class Checkin {
-    private int id;
+    
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "cliente_id")
     private int clienteId;
+    @Column(name = "usuario_id")
     private int usuarioId;
+    @Column(name = "franquia_id")
     private int idFranquia;
     private String data;
     private String hora;
 
-    public Checkin(int id, int clienteId, int usuarioId,int idFranquia, String data, String hora) {
+    public Checkin(){}
+
+    public Checkin(Integer id, int clienteId, int usuarioId,int idFranquia, String data, String hora) {
         this.id = id;
         this.clienteId = clienteId;
         this.usuarioId = usuarioId;
@@ -17,7 +29,7 @@ public class Checkin {
         this.hora = hora;
     }
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public int getClienteId() { return clienteId; }
 
@@ -29,7 +41,7 @@ public class Checkin {
 
     public String getHora() { return hora; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public void setClienteId(int clienteId) { this.clienteId = clienteId; }
 

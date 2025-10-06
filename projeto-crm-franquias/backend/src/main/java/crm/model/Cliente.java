@@ -1,14 +1,28 @@
 package crm.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Cliente")
 public class Cliente {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private String numeroTelefone;
     private String tipoPlano;
-    private int idFranquia;
+    @Column(name = "franquia_id")
+    private Integer idFranquia;
 
-    public Cliente(int id, String nome, String numeroTelefone, String tipoPlano, int idFranquia) {
+    public Cliente(){}
+
+    public Cliente(Integer id, String nome, String numeroTelefone, String tipoPlano, Integer idFranquia) {
         this.id = id;
         this.nome = nome;
         this.numeroTelefone = numeroTelefone;
@@ -16,11 +30,11 @@ public class Cliente {
         this.idFranquia = idFranquia;
     }
 
-    public Cliente(String nome, String numeroTelefone, String tipoPlano, int idFranquia) {
+    public Cliente(String nome, String numeroTelefone, String tipoPlano, Integer idFranquia) {
         this(-1, nome, numeroTelefone, tipoPlano, idFranquia);
     }
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getNome() { return nome; }
 
@@ -28,9 +42,9 @@ public class Cliente {
 
     public String getTipoPlano() { return tipoPlano; }
 
-    public int getIdFranquia() { return idFranquia; }
+    public Integer getIdFranquia() { return idFranquia; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public void setNome(String nome) { this.nome = nome; }
 
@@ -38,7 +52,7 @@ public class Cliente {
 
     public void setTipoPlano(String tipoPlano) { this.tipoPlano = tipoPlano; }
 
-    public void setIdFranquia(int idFranquia) { this.idFranquia = idFranquia; }
+    public void setIdFranquia(Integer idFranquia) { this.idFranquia = idFranquia; }
 
 
     @Override

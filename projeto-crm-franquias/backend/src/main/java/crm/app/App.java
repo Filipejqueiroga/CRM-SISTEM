@@ -331,7 +331,7 @@ private static void gerenciarUsuarios(Scanner scanner, UsuarioDAO dao) {
                     System.out.print("Descrição: "); String desc = scanner.nextLine();
                     System.out.print("Valor (ex: 199.99): "); double valor = Double.parseDouble(scanner.nextLine());
                     System.out.print("Data (AAAA-MM-DD): "); String data = scanner.nextLine();
-                    dao.adicionar_venda(new Venda(0, idCliente, desc, valor, data));
+                    dao.adicionar_venda(new Venda(0, idCliente, idCliente, desc, valor, data));
                     System.out.println("Venda adicionada!");
                     break;
                 case 3:
@@ -341,7 +341,7 @@ private static void gerenciarUsuarios(Scanner scanner, UsuarioDAO dao) {
                     System.out.print("Nova Descrição: "); String descUpd = scanner.nextLine();
                     System.out.print("Novo Valor: "); double valorUpd = Double.parseDouble(scanner.nextLine());
                     System.out.print("Nova Data: "); String dataUpd = scanner.nextLine();
-                    dao.atualizar_venda(new Venda(idUpd, idClienteUpd, descUpd, valorUpd, dataUpd));
+                    dao.atualizar_venda(new Venda(idUpd, idClienteUpd, idCliente, descUpd, valorUpd, dataUpd));
                     System.out.println("Venda atualizada!");
                     break;
                 case 4:
