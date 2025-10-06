@@ -1,0 +1,50 @@
+.container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.coluna h3 {
+  margin-top: 0;
+}
+
+.tag {
+  background-color: #ffc107;
+  color: #333;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.tagPlano {
+  background-color: #17a2b8;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* Para telas menores */
+@media (max-width: 768px) {
+  .colunas {
+    grid-template-columns: 1fr;
+  }
+}
