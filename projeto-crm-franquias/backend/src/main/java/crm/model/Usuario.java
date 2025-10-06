@@ -1,14 +1,25 @@
 package crm.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Usuario")
 public abstract class Usuario {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String email;
+    @Column(name = "nome_usuario")
     private String nomeUsuario;
     private String senha;
+    @Column(name = "franquia_id")
     private int idFranquia;
+    @Column(name = "tipo_usuario")
     private int tipoUsuario;    //1- Franqueado, 2- Franqueador
 
-    public Usuario(int id, String email, String nomeUsuario, String senha, int tipoUsuario ) {
+    public Usuario(){}
+
+    public Usuario(Integer id, String email, String nomeUsuario, String senha, int tipoUsuario ) {
         this.id = id;
         this.email = email;
         this.nomeUsuario = nomeUsuario;
@@ -18,7 +29,7 @@ public abstract class Usuario {
     }
 
 
-    public Usuario(int id, String email, String nomeUsuario, String senha,int tipoUsuario, int idFranquia) {
+    public Usuario(Integer id, String email, String nomeUsuario, String senha,int tipoUsuario, int idFranquia) {
         this.id = id;
         this.email = email;
         this.nomeUsuario = nomeUsuario;
@@ -29,7 +40,7 @@ public abstract class Usuario {
     }
 
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getEmail() { return email; }
 
@@ -42,7 +53,7 @@ public abstract class Usuario {
     public int getIdFranquia() { return idFranquia; }
 
 
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public void setEmail(String email) { this.email = email; }
 

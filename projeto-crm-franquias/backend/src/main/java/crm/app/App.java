@@ -534,7 +534,7 @@ public class App {
                     System.out.println("\nListando vendas...");
                     dao.listar_vendas().forEach(v -> System.out.printf(
                             "ID: %d | Cliente ID: %d | Franquia ID: %d | Descrição: %s | Valor: %.2f | Data: %s\n",
-                            v.getId(), v.getIdCliente(), v.getFranquiaId(), v.getDescricao(), v.getValor(), v.getData()
+                            v.getId(), v.getIdCliente(), v.getIdFranquia(), v.getDescricao(), v.getValor(), v.getData()
                     ));
                     break;
                 case 2:
@@ -594,7 +594,7 @@ public class App {
                     System.out.println("\nListando check-ins...");
                     dao.listar_checkins().forEach(ch -> System.out.printf(
                             "ID: %d | Cliente ID: %d | Usuário ID: %d | Franquia ID: %d | Data: %s | Hora: %s\n",
-                            ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getFranquiaId(), ch.getData(), ch.getHora()
+                            ch.getId(), ch.getClienteId(), ch.getUsuarioId(), ch.getIdFranquia(), ch.getData(), ch.getHora()
                     ));
                     break;
                 case 2:

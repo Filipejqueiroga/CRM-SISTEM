@@ -1,14 +1,23 @@
 package crm.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Franquia")
 public class Franquia {
-    private int id;
+    
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;
     private String cidade;
     private String status;
+    @Column(name = "tipo_negocio") 
     private String tipoNegocio;
 
+    public Franquia(){}
 
-    public Franquia(int id, String nome, String cidade, String status) {
+    public Franquia(Integer id, String nome, String cidade, String status) {
         this.id = id;
         this.nome = nome;
         this.cidade = cidade;
@@ -16,8 +25,7 @@ public class Franquia {
         this.tipoNegocio = "";
     }
 
-
-    public Franquia(int id, String nome, String cidade, String status, String tipoNegocio) {
+    public Franquia(Integer id, String nome, String cidade, String status, String tipoNegocio) {
         this.id = id;
         this.nome = nome;
         this.cidade = cidade;
@@ -25,8 +33,7 @@ public class Franquia {
         this.tipoNegocio = tipoNegocio;
     }
 
-
-    public int getId() { return id; }
+    public Integer getId() { return id; }
 
     public String getNome() { return nome; }
 
@@ -36,8 +43,7 @@ public class Franquia {
 
     public String getTipoNegocio() { return tipoNegocio; }
 
-
-    public void setId(int id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     public void setNome(String nome) { this.nome = nome; }
 
@@ -46,7 +52,6 @@ public class Franquia {
     public void setStatus(String status) { this.status = status; }
 
     public void setTipoNegocio(String tipoNegocio) { this.tipoNegocio = tipoNegocio; }
-
 
     @Override
     public String toString() {
