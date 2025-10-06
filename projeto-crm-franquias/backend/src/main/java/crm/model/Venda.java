@@ -2,6 +2,15 @@ package crm.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Representa uma entidade de Venda no sistema.
+ * Esta classe é um modelo de dados (POJO) que armazena as informações
+ * de uma transação de venda.
+ *
+ * @version 1.1
+ * @since 2025-10-05
+ */
+
 @Entity 
 @Table(name = "Venda") 
 public class Venda {
@@ -13,6 +22,7 @@ public class Venda {
     private int idCliente;
     @Column(name = "franquia_id")
     private int idFranquia;
+
     private String descricao;
     private double valor;
     private String data;
@@ -42,13 +52,13 @@ public class Venda {
 
     public Integer getId() { return id; }
 
-    public int getIdCliente() { return idCliente; }
+    public int getIdCliente() {
+        return idCliente;
+    }
 
-    public String getDescricao() { return descricao; }
-
-    public double getValor() { return valor; }
-
-    public String getData() { return data; }
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 
     public int getIdFranquia() {
         return idFranquia;
@@ -58,19 +68,39 @@ public class Venda {
         this.idFranquia = idFranquia;
     }
 
-    public void setId(Integer id) { this.id = id; }
+    public String getDescricao() {
+        return descricao;
+    }
 
-    public void setIdCliente(int idCliente) { this.idCliente = idCliente; }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public double getValor() {
+        return valor;
+    }
 
-    public void setValor(double valor) { this.valor = valor; }
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
 
-    public void setData(String data) { this.data = data; }
+    public String getData() {
+        return data;
+    }
 
+    public void setData(String data) {
+        this.data = data;
+    }
 
     @Override
     public String toString() {
-        return "Venda{id=" + id + ", idCliente=" + idCliente + ", idFranquia="+idFranquia+ "descricao='" + descricao + "', valor=" + valor + ", data='" + data + "'}";
+        return "Venda{" +
+                "id=" + id +
+                ", idCliente=" + idCliente +
+                ", franquiaId=" + idFranquia +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                ", data='" + data + '\'' +
+                '}';
     }
 }
