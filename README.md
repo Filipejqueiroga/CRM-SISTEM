@@ -24,7 +24,7 @@ Para solucionar esse problema, foi desenvolvido um sistema de **Gestão de Relac
 
   * **Linguagem de Programação:** Java JDK 17.
   * **IDE (Ambiente de Desenvolvimento Integrado):** Visual Studio Code
-  * **Bibliotecas:** sqlite-jdbc, Scanner, 
+  * **Bibliotecas:** Linguagens: Java e Sql, Banco de Dados: Sqlite
   * **Estrutura de Pacotes:** O projeto foi organizado na seguinte estrutura para separar as responsabilidades:
       * `crm.app`: Contém a classe principal da aplicação (App.java).
       * `crm.dao`: Contém as classes de acesso a dados (Data Access Objects) para interagir com o banco de dados. Exemplos: CheckinDAO.java, ClienteDAO.java, FranquiaDAO.java, LeadDAO.java, UsuarioDAO.java, VendaDAO.java, ConnectionFactory.java, DatabaseSetup.java.
@@ -37,7 +37,6 @@ Para solucionar esse problema, foi desenvolvido um sistema de **Gestão de Relac
 O projeto resultou em uma aplicação de console plenamente funcional que atende aos requisitos propostos, permitindo a gestão completa de uma rede de franquias de forma simulada. O sistema diferencia corretamente as permissões entre Franqueador e Franqueado e permite a realização de operações de CRUD (Criar, Ler, Atualizar, Excluir) para todas as entidades principais, como franquias, clientes, leads e vendas.
 
 **Dificuldades Encontradas:**
-*(Sugestão: descreva aqui os desafios que seu grupo enfrentou. Exemplo abaixo)*
 
 > Uma das principais dificuldades foi garantir que os franqueados tivessem acesso apenas aos dados de suas respectivas franquias, o que exigiu um controle cuidadoso na lógica dos métodos DAO e na passagem de parâmetros. Além disso, a gestão do fluxo de menus no console e a validação das entradas do usuário para evitar quebras de execução (como `NumberFormatException`) foram desafios constantes.
 Também um grande desafio foi conectar o front com o back por meio de API.
