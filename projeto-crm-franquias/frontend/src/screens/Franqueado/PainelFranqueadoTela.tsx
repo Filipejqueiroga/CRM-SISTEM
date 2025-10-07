@@ -21,7 +21,6 @@ const PainelFranqueadoTela: React.FC = () => {
         <p>Leads em Aberto: {resumoFranquia.leads}</p>
       </div>
 
-      {/* SEÇÃO DE NAVEGAÇÃO ADICIONADA */}
       <div className={styles.secao}>
         <h2>Ações Rápidas</h2>
         <div className={styles.acoes}>

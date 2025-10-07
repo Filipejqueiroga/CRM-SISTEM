@@ -11,7 +11,7 @@ const CadastroTela: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Aqui você faria a chamada para a sua API: POST /api/cadastro
+    // substituir por chamada API: POST /api/cadastro
     console.log('Tentativa de cadastro com:', { nome, email, senha, tipoUsuario });
     
     alert('Cadastro realizado com sucesso! Você será redirecionado para o login.');
@@ -53,7 +53,7 @@ const CadastroTela: React.FC = () => {
               required
             />
           </div>
-          {/* O campo tipo de usuário é necessário para o cadastro */}
+
           <div className={styles.formGroup}>
             <label htmlFor="tipoUsuario">Eu sou</label>
             <select 

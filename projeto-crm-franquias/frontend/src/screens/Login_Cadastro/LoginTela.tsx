@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginTela.module.css';
 import { useAuth } from '../../AuthContext';
-// Supondo que o useAuth venha do seu contexto de autenticação
-// import { useAuth } from '../../context/AuthContext';
+
 
 const LoginTela: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -17,15 +16,14 @@ const LoginTela: React.FC = () => {
     // const { user, token } = await api.post('/login', { email, senha });
     // login(user, token); // Salva no Contexto
 
-    if (email === 'admin@sistema.com' && senha === 'admin123') {
+    if (email === 'admin@gmail' && senha === '123') {
       const userSimulado = { id: 1, nome: 'Admin Franqueador', email: email, tipo_usuario: 'franqueador' as const };
       login(userSimulado, 'fake-token-franqueador');
       
       alert('Login como Franqueador bem-sucedido!');
       navigate('/franqueador');
 
-    // Checa se as credenciais são do Franqueado
-    } else if (email === 'franquia@sistema.com' && senha === 'user123') {
+    } else if (email === 'franquia@gmail' && senha === '123') {
       const userSimulado = { id: 2, nome: 'Usuário Franqueado', email: email, tipo_usuario: 'franqueado' as const };
       login(userSimulado, 'fake-token-franqueado');
 
