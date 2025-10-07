@@ -1,21 +1,78 @@
+package crm.model;
+
 public class Franqueado extends Usuario {
-    private String nome_franquia;
+    private String nomeFranquia;
+    private int idFranquiaLocal;
 
-    public Franqueado(int id, String email, String nome_usuario, String senha, String nome_franquia) {
-        super(id, email, nome_usuario, senha);
-        this.nome_franquia = nome_franquia;
+
+    public Franqueado(int id, String email, String nomeUsuario, String senha, String nomeFranquia, int idFranquia) {
+        super(id, email, nomeUsuario, senha, 1, idFranquia);
+        this.nomeFranquia = nomeFranquia;
+        this.idFranquiaLocal = idFranquia;
     }
 
-    public String getNome_franquia() {
-        return this.nome_franquia;
+
+    public Franqueado(int id, String email, String nomeUsuario, String senha, String nomeFranquia) {
+        super(id, email, nomeUsuario, senha,1);
+        this.nomeFranquia = nomeFranquia;
+        this.idFranquiaLocal = -1;
     }
 
-    public void setNome_franquia(String nome_franquia) {
-        this.nome_franquia = nome_franquia;
+
+    public String getNomeFranquia() { return nomeFranquia; }
+
+    public int getIdFranquiaLocal() { return idFranquiaLocal; }
+
+    public void setNomeFranquia(String nomeFranquia) { this.nomeFranquia = nomeFranquia; }
+
+    public void setIdFranquiaLocal(int idFranquiaLocal) { this.idFranquiaLocal = idFranquiaLocal; }
+
+
+    @Override
+    public void exibirMenu() {
+        System.out.println("\n=== MENU DO FRANQUEADO ===");
+        System.out.println("1- Nome da Franquia");
+        System.out.println("2- Gerenciar Clientes");
+        System.out.println("3- Gerenciar Vendas");
+        System.out.println("4- Gerenciar Leads");
+        System.out.println("5- Gerenciar Check-in");
+        System.out.println("6- Relatórios");
+        System.out.println("0- Sair");
+        System.out.print("Escolha uma opção: ");
     }
 
     @Override
     public String toString() {
-        return "Nome do Franqueado: " + getNome_usuario() + "\n" + "Franquia: " + nome_franquia;
+        return "Franqueado{ID=" + getId() + ", Nome='" + getNomeUsuario() + "', Email='" + getEmail() +
+                "', Franquia='" + nomeFranquia + "', IDFranquia=" + idFranquiaLocal + "}";
+    }
+
+    public void exibirPerfil() {
+        System.out.println("\n=== PERFIL DO FRANQUEADO ===");
+        System.out.println("ID: " + getId());
+        System.out.println("Nome: " + getNomeUsuario());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Nome da Franquia: " + nomeFranquia);
+        System.out.println("ID da Franquia: " + idFranquiaLocal);
+    }
+
+    public String toResumo() {
+        return String.format("%s - %s (ID Franquia: %d)", getNomeUsuario(), nomeFranquia, idFranquiaLocal);
+    }
+
+    public void exibirInformacoesBasicas() {
+        System.out.println("Nome do Franqueado: " + getNomeUsuario());
+        System.out.println("Franquia: " + nomeFranquia);
+    }
+
+    public void exibirResumoFranquia() {
+        System.out.println("\n--- Resumo da Franquia ---");
+        System.out.println("Franquia: " + nomeFranquia);
+        System.out.println("ID: " + idFranquiaLocal);
+        System.out.println("Responsável: " + getNomeUsuario());
+    }
+
+    public boolean validarFranquia() {
+        return nomeFranquia != null && !nomeFranquia.trim().isEmpty() && idFranquiaLocal > 0;
     }
 }

@@ -1,0 +1,45 @@
+.container {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.painelCheckin {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: #f2f8ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.busca {
+  flex-grow: 1;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.botao {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.botao:hover {
+  background-color: #218838;
+}
+
+.recentes {
+  margin-top: 2rem;
+}
+
+.lista {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}

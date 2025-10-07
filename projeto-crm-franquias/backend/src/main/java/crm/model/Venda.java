@@ -1,31 +1,71 @@
-public class Venda {
+package crm.model;
 
-    private int id;
-    private int id_cliente;
+import jakarta.persistence.*;
+
+/**
+ * Representa uma entidade de Venda no sistema.
+ * Esta classe é um modelo de dados (POJO) que armazena as informações
+ * de uma transação de venda.
+ *
+ * @version 1.1
+ * @since 2025-10-05
+ */
+
+@Entity 
+@Table(name = "Venda") 
+public class Venda {
+    
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "id_cliente")
+    private int idCliente;
+    @Column(name = "franquia_id")
+    private int idFranquia;
+
     private String descricao;
     private double valor;
+    private String data;
 
-    public Venda(int id, int id_cliente, String descricao, double valor) {
+    public Venda() {}
+
+    public Venda(Integer id, int idCliente, int idFranquia, String descricao, double valor, String data) {
         this.id = id;
-        this.id_cliente = id_cliente;
+        this.idCliente = idCliente;
+        this.idFranquia = idFranquia;
         this.descricao = descricao;
         this.valor = valor;
+        this.data = data;
     }
 
-    public int getId() {
-        return id;
+    public Venda(int idCliente, int idFranquia, String descricao, double valor, String data) {
+        this.idCliente = idCliente;
+        this.idFranquia = idFranquia;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.data = data;
+  }
+
+    public Venda(int idCliente, String descricao, double valor) {
+        this(null, idCliente, 0, descricao, valor, null); 
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Integer getId() { return id; }
+
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public int getIdFranquia() {
+        return idFranquia;
+    }
+
+    public void setIdFranquia(int idFranquia) {
+        this.idFranquia = idFranquia;
     }
 
     public String getDescricao() {
@@ -42,5 +82,25 @@ public class Venda {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Venda{" +
+                "id=" + id +
+                ", idCliente=" + idCliente +
+                ", franquiaId=" + idFranquia +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                ", data='" + data + '\'' +
+                '}';
     }
 }

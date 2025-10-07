@@ -2,14 +2,15 @@
 
 ## 1\. Capa e Identificação
 
-  * **Título do Projeto:** Sistema de CRM para Gestão de Franquias.
-  * **Nomes dos Integrantes da Equipe:**
+  * *Título do Projeto:* Sistema de CRM para Gestão de Franquias.
+      * *Nomes dos Integrantes da Equipe:*
       * Filipe Juscelino Queiroga Lacerda
-      * Gabriela Borborema
+      * Gabriela Borborema Ramos Formiga
       * Bruno Freire Ramos
       * Rebeca Nascimento Belmont
       * Pedro Henrique de Queiroz Cavalcanti
-  * **Local de Armazenamento do Código Fonte:**
+      
+      * Local de Armazenamento do Código Fonte:*
       * https://github.com/Filipejqueiroga/CRM-SISTEM.git
 
 ## 2\. Introdução

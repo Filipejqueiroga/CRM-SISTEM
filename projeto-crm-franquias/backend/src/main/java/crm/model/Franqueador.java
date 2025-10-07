@@ -1,22 +1,30 @@
+package crm.model;
+
 public class Franqueador extends Usuario {
-    
-    private String nome_empresa;
+    private String nomeEmpresa;
 
-    public Franqueador(int id, String email, String nome_usuario, String senha, String nome_empresa) {
-        super(id, email, nome_usuario, senha);
-        this.nome_empresa = nome_empresa;
+    // Construtor único e correto
+    public Franqueador(int id, String email, String nomeUsuario, String senha, String nomeEmpresa) {
+        // O tipo '2' é fixo para Franqueador. Um Franqueador não tem um idFranquia associado.
+        super(id, email, nomeUsuario, senha, 2, 0); // Passando 0 ou um valor padrão para idFranquia
     }
 
-    public String getNome_empresa() {
-        return this.nome_empresa;
-    }
+    public String getNomeEmpresa() { return nomeEmpresa; }
+    public void setNomeEmpresa(String nomeEmpresa) { this.nomeEmpresa = nomeEmpresa; }
 
-    public void setNome_empresa(String nome_empresa) {
-        this.nome_empresa = nome_empresa;
+    @Override
+    public void exibirMenu() {
+        System.out.println("========= MENU DO FRANQUEADOR =========");
+        System.out.println("1. Gerenciar Usuários (Franqueados)");
+        System.out.println("2. Consultar Clientes");
+        System.out.println("3. Consultar Leads");
+        System.out.println("4. Gerar Relatórios");
+        System.out.println("5. Gerenciar Franquias");
+        System.out.println("0. Sair (Logout)");
     }
 
     @Override
     public String toString() {
-        return "Nome do Franqueador: " + getNome_usuario() + "\n" + "Franqueadora: " + nome_empresa;
+        return "Franqueador{ID=" + getId() + ", Nome='" + getNomeUsuario() + "', Empresa='" + nomeEmpresa + "'}";
     }
 }

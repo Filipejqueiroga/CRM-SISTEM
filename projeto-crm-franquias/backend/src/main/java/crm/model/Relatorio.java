@@ -1,72 +1,95 @@
+package crm.model;
 
 import java.util.List;
 
+import crm.model.Cliente;
+import crm.model.Franquia;
+import crm.model.Venda;
+import crm.model.Lead;
+import crm.model.Franquia;
+import crm.dao.CheckinDAO;
+import crm.dao.ClienteDAO;
+import crm.dao.FranquiaDAO;
+import crm.dao.LeadDAO;
+import crm.dao.VendaDAO;
+
 public class Relatorio {
 
+    private ClienteDAO clienteDAO = new ClienteDAO();
+    private VendaDAO vendaDAO = new VendaDAO();
+    private LeadDAO leadDAO = new LeadDAO();
+    private FranquiaDAO franquiaDAO = new FranquiaDAO();
+    private CheckinDAO checkinDAO = new CheckinDAO();
+
+    public Relatorio(){}
+
     //relatorio geral de todas as franquias
-    public void relatorioGeral(List<Franquia> franquias, List<Cliente> clientes, List<Venda> vendas, List<Lead> leads) {
+    public void relatorioGeral(String dataVenda) {
         double faturamentoTotal = 0;
-        int totalClientes = 0;
+        int clientesTotal = 0;
+        List<Lead> leads = leadDAO.listar_leads();
+        int leadsTotal = leads.size();
 
-        for (Franquia franquia : franquias) {
-            int clientesFranquia = 0;
-            double faturamentoFranquia = 0;
+        List<Franquia> franquias = franquiaDAO.listar_franquias();
+        int franquiasTotal = franquias.size();
+
+        System.out.println("Relatorio Geral: ");
+        for(Franquia f : franquias){
+            int idFranquia = f.getId();
             
-            //conta todos os clientes
-            for (Cliente cliente : clientes) {
-                if (cliente.getId_franquia() == franquia.getId()) {
-                    clientesFranquia++;
+            List<Cliente> clientesFranquia = clienteDAO.listar_clientes_franquia(idFranquia);
+            int clientesTotalFranquia = clientesFranquia.size();
 
-                    //somando todas as vendas
-                    for (Venda venda : vendas) {
-                        if (venda.getId_cliente() == cliente.getId()) {
-                            faturamentoFranquia += venda.getValor();
-                        }
-                    }
-                }
+            List<Venda> vendasFranquia = vendaDAO.listar_vendas_franquia(idFranquia, dataVenda);
+            double faturamentoFranquia = 0;
+
+            for(Venda venda : vendasFranquia){
+                faturamentoFranquia += venda.getValor();
             }
-            //mostra dados por franquia
-            System.out.println("Franquia " + franquia.getNome() + ", " + franquia.getCidade() + ": ");
-            System.out.println("Clientes: " + clientesFranquia);
-            System.out.println("Faturamento: R$ " + faturamentoFranquia);
-            System.out.println();
 
-            totalClientes += clientesFranquia;
             faturamentoTotal += faturamentoFranquia;
+            clientesTotal += clientesTotalFranquia;
+
+            //mostra dados de cada franquia existente
+            System.out.println();
+            System.out.println("Franquia " + f.getNome() + " (" + f.getCidade() + "): ");
+            System.out.println(" - Clientes: " + clientesTotalFranquia);
+            System.out.println(" - Faturamento: R$ " + faturamentoFranquia);
         }
 
         // resumo geral
-        System.out.println("Total de Clientes: " + totalClientes);
-        System.out.println("Faturamento Total: R$ " + faturamentoTotal);
-        System.out.println("Leads Castrados: " + leads.size());
+        System.out.println();
+        System.out.println("---------------------------");
+        System.out.println("Total de franquias: "+ franquiasTotal);
+        System.out.println("Total de Clientes: " + clientesTotal);
+        System.out.println("Total de leads cadastrados: "+ leadsTotal);
+        System.out.println("Faturamento total em "+dataVenda+": R$ " + faturamentoTotal);
+        System.out.println();
     }
 
     //relatorio de uma franquia específica
-    public void relatorioFranquia(int id_franquia, List<Cliente> clientes, List<Venda> vendas, List<Lead> leads) {
-        int clientesFranquia = 0;
+    public void relatorioFranquia(int id_franquia, String dataVenda) {
+        List<Cliente> clientesFranquia = clienteDAO.listar_clientes_franquia(id_franquia);
+        List<Checkin> chekinsFranquia = checkinDAO.listar_checkins_franquia(id_franquia);
+
+        Franquia franquia = franquiaDAO.buscar_franquia_por_id(id_franquia);
+        String nomeFranquia = (franquia != null) ? franquia.getNome() : "Franquia Desconhecida";
+
+        int clientesTotal = clientesFranquia.size();
+        int checkinsTotal = chekinsFranquia.size();
+
+        List<Venda> vendasFranquia = vendaDAO.listar_vendas_franquia(id_franquia, dataVenda);
+
         double faturamentoFranquia = 0;
 
-        System.out.println("Clientes:");
-        for (Cliente cliente : clientes) {
-            //contando os clientes da franquia
-            if (cliente.getId_franquia() == id_franquia) {
-                clientesFranquia++;
-
-                //calculando o faturamento
-                for (Venda venda : vendas) {
-                    if (venda.getId_cliente() == cliente.getId()) {// "se o id do cliente que comprou for igual esse id"
-                        faturamentoFranquia += venda.getValor();
-                    }
-                }
-                System.out.println("Nome: "+cliente.getNome());
-                System.out.println("Id: "+cliente.getId());
-                System.out.println("Telefone: "+cliente.getNumero_telefone());
-                System.out.println("Plano: "+cliente.getTipo_plano());
-            }
+        for(Venda venda : vendasFranquia){
+            faturamentoFranquia += venda.getValor();
         }
 
-        System.out.println("Total de clientes: " + clientesFranquia);
-        System.out.println("Faturamento: R$ " + faturamentoFranquia);
-        System.out.println("Leads Castrados: " + leads.size());
+        System.out.println("Relatorio da franquia " + nomeFranquia + ":");
+        System.out.println();
+        System.out.println(" - Total de clientes: " + clientesTotal);       
+        System.out.println(" - Total de checkins: "+ checkinsTotal);
+        System.out.println(" - Faturamento em "+ dataVenda +": R$ " + faturamentoFranquia);
     }
 }
