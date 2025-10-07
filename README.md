@@ -5,7 +5,7 @@
   * **Título do Projeto:** Sistema de CRM para Gestão de Franquias.
   * **Nomes dos Integrantes da Equipe:**
       * Filipe Juscelino Queiroga Lacerda
-      * Gabriela Borborema
+      * Gabriela Borborema Ramos Formiga
       * Bruno Freire Ramos
       * Rebeca Nascimento Belmont
       * Pedro Henrique de Queiroz Cavalcanti
