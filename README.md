@@ -24,20 +24,19 @@ Para solucionar esse problema, foi desenvolvido um sistema de **Gestão de Relac
 
   * **Linguagem de Programação:** Java JDK 17.
   * **IDE (Ambiente de Desenvolvimento Integrado):** Visual Studio Code
-  * **Bibliotecas:** sqlite-jdbc, Scanner, 
+  * **Bibliotecas:** Linguagens: Java e Sql, Banco de Dados: Sqlite. E a biblioteca Scanner
   * **Estrutura de Pacotes:** O projeto foi organizado na seguinte estrutura para separar as responsabilidades:
       * `crm.app`: Contém a classe principal da aplicação (App.java).
       * `crm.dao`: Contém as classes de acesso a dados (Data Access Objects) para interagir com o banco de dados. Exemplos: CheckinDAO.java, ClienteDAO.java, FranquiaDAO.java, LeadDAO.java, UsuarioDAO.java, VendaDAO.java, ConnectionFactory.java, DatabaseSetup.java.
       * `crm.model`: Contém as classes de modelo que representam as entidades do sistema. Exemplos: Academia.java, Checkin.java, Cliente.java, Franqueado.java, Franqueador.java, Franquia.java, Lead.java, Main.java, Relatorio.java, Usuario.java, Venda.java.
       * `data`: contém init.sql, que serve para inicializar o banco de dados
-      * `frontend`: linguagem do front: typescript, bibliotecas: react, Vite pra fazer a build, CSS modules pra estilização
+      * `frontend`: O frontend do projeto com os arquivos principais em src/, incluindo App.tsx, main.tsx e index.css.
 
 ## 5\. Resultados e Considerações Finais
 
 O projeto resultou em uma aplicação de console plenamente funcional que atende aos requisitos propostos, permitindo a gestão completa de uma rede de franquias de forma simulada. O sistema diferencia corretamente as permissões entre Franqueador e Franqueado e permite a realização de operações de CRUD (Criar, Ler, Atualizar, Excluir) para todas as entidades principais, como franquias, clientes, leads e vendas.
 
 **Dificuldades Encontradas:**
-*(Sugestão: descreva aqui os desafios que seu grupo enfrentou. Exemplo abaixo)*
 
 > Uma das principais dificuldades foi garantir que os franqueados tivessem acesso apenas aos dados de suas respectivas franquias, o que exigiu um controle cuidadoso na lógica dos métodos DAO e na passagem de parâmetros. Além disso, a gestão do fluxo de menus no console e a validação das entradas do usuário para evitar quebras de execução (como `NumberFormatException`) foram desafios constantes.
 Também um grande desafio foi conectar o front com o back por meio de API.
