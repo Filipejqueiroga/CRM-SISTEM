@@ -18,7 +18,7 @@ O presente projeto aborda o desafio de gerenciar uma rede de franquias de forma 
 
 Para solucionar esse problema, foi desenvolvido um sistema de **Gestão de Relacionamento com o Cliente (CRM)** em formato de aplicação de console. O software permite a criação de dois tipos de perfis de usuário, **Franqueador** e **Franqueado**, cada um com menus e permissões específicas, garantindo que o franqueador possa administrar a rede e que o franqueado possa focar na gestão da sua própria unidade.
 
-## 3\. UML do projeto: C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\Uml_FinalProject.png
+## 3\. UML do projeto: C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\Uml_FinalProject.png (caminho referente à minha máquina)
 
 ## 4\. Ferramentas Utilizadas
 
@@ -30,7 +30,7 @@ Para solucionar esse problema, foi desenvolvido um sistema de **Gestão de Relac
       * `crm.dao`: Contém as classes de acesso a dados (Data Access Objects) para interagir com o banco de dados. Exemplos: CheckinDAO.java, ClienteDAO.java, FranquiaDAO.java, LeadDAO.java, UsuarioDAO.java, VendaDAO.java, ConnectionFactory.java, DatabaseSetup.java.
       * `crm.model`: Contém as classes de modelo que representam as entidades do sistema. Exemplos: Academia.java, Checkin.java, Cliente.java, Franqueado.java, Franqueador.java, Franquia.java, Lead.java, Main.java, Relatorio.java, Usuario.java, Venda.java.
       * `data`: contém init.sql, que serve para inicializar o banco de dados
-      * `frontend`: O frontend do projeto com os arquivos principais em src/, incluindo App.tsx, main.tsx e index.css.
+      * `frontend`: linguagem do front: typescript, biblioteca: react, Vite pra fazer a build, CSS modules pra estilização
 
 ## 5\. Resultados e Considerações Finais
 
