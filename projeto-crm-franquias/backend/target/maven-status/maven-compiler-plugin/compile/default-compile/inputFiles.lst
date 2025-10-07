@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\VendaDAO.java
+C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Venda.java
+=======
+>>>>>>> 0f19bec5e49a7de6be59dce4730780453389d503
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\app\App.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\controller\CheckinController.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\controller\ClienteController.java
@@ -20,6 +29,61 @@ C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\back
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueado.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueador.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franquia.java
+<<<<<<< HEAD
+=======
+>>>>>>> 53b6a7f07643de13c8bf0be9e07ba3e4e7196254
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Main.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\DatabaseSetup.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueador.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Academia.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueado.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\UsuarioDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\VendaDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Relatorio.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Venda.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\FranquiaDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Lead.java
+<<<<<<< HEAD
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\app\App.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\ConnectionFactory.java
+=======
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\app\menus_diferentes.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\app\App.java
+>>>>>>> 53b6a7f07643de13c8bf0be9e07ba3e4e7196254
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Usuario.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Cliente.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\ClienteDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\LeadDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Franquia.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\dao\CheckinDAO.java
+C:\Users\slash\OneDrive\Documentos\Projects\CRM-SISTEM\projeto-crm-franquias\projeto-crm-franquias\backend\src\main\java\crm\model\Checkin.java
+<<<<<<< HEAD
+=======
+>>>>>>> 21d8b73ccb15deeed03c1af4a5e3c02b27729ed1
+=======
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\LeadDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\app\App.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\UsuarioDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\DatabaseSetup.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Cliente.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Venda.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\CheckinDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\ClienteDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franquia.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\VendaDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\FranquiaDAO.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Academia.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\dao\ConnectionFactory.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Checkin.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Usuario.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Relatorio.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Main.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Lead.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueado.java
+C:\Users\Felipe\Documents\Final_Project_OOP\Repository\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Franqueador.java
+>>>>>>> 3e87bea7ff4f257a156007c0fbbf80c7d156851b
+>>>>>>> 53b6a7f07643de13c8bf0be9e07ba3e4e7196254
+=======
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Lead.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Main.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\model\Relatorio.java
@@ -38,3 +102,4 @@ C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\back
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\service\RelatorioService.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\service\UsuarioService.java
 C:\Users\bebek\OneDrive\Documents\projects\CRM-SISTEM\projeto-crm-franquias\backend\src\main\java\crm\service\VendaService.java
+>>>>>>> 0f19bec5e49a7de6be59dce4730780453389d503
