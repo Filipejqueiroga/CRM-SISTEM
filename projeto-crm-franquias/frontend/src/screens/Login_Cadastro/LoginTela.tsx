@@ -30,7 +30,6 @@ const LoginTela: React.FC = () => {
       alert('Login como Franqueado bem-sucedido!');
       navigate('/franqueado');
 
-    // Se nenhuma credencial for válida
     } else {
       alert('Email ou senha inválidos!');
     }

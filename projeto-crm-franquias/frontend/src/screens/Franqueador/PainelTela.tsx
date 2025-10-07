@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Franquia, LeadFranqueadora } from '../../types';
-// 1. Garanta que os serviços mocados estão sendo importados
+
 import { getFranquias, getLeadsFranqueadora } from '../../api/servicos';
 import styles from './PainelTela.module.css';
 import ItemLista from '../../components/ItemLista';
@@ -9,7 +9,6 @@ import ItemLista from '../../components/ItemLista';
 const PainelTela: React.FC = () => {
   const [franquias, setFranquias] = useState<Franquia[]>([]);
   const [leads, setLeads] = useState<LeadFranqueadora[]>([]);
-  // 2. O estado de loading começa como 'true'
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -37,7 +36,6 @@ const PainelTela: React.FC = () => {
     navigate(`/franqueador/franquia/${id}`);
   };
 
-  // 5. Se loading for true, mostra a mensagem. Quando for false, mostra o resto.
   if (loading) {
     return <p style={{ padding: '2rem' }}>Carregando...</p>;
   }

@@ -54,7 +54,6 @@ const AppLayout = () => {
         </button>
       </nav>
       <main>
-        // rotas protegidas
         <Outlet />
       </main>
     </div>

@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('authToken'); 
+    localStorage.removeItem('authToken'); //localStorage pode ser perigoso
   };
 
   return (
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+    throw new Error('useAuth ta fora de um AuthProvider');
   }
   return context;
 };
