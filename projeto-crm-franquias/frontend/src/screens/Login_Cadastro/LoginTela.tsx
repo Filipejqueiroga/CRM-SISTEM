@@ -38,20 +38,6 @@ const LoginTela: React.FC = () => {
     }
   };
 
-    // 
-    //if (email.includes('franqueador')) {
-     // const userSimulado = { id: 1, nome: 'Admin', email: email, tipo_usuario: 'franqueador' as const };
-      // login(userSimulado, 'fake-token');
-      //alert('Login como Franqueador bem-sucedido!');
-     // navigate('/franqueador'); // Redireciona para a rota correta
-    //} else {
-      //const userSimulado = { id: 2, nome: 'Franqueado Teste', email: email, tipo_usuario: 'franqueado' as const };
-      // login(userSimulado, 'fake-token');
-      //alert('Login como Franqueado bem-sucedido!');
-      //navigate('/franqueado'); // Redireciona para a rota correta
-    //}
-  //}; 
-
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>

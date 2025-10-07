@@ -37,7 +37,7 @@ public class VendaDAO {
              PreparedStatement ps = conexao.prepareStatement(sql)) {
 
             ps.setInt(1, venda.getIdCliente());
-            ps.setInt(2, venda.getFranquiaId());
+            ps.setInt(2, venda.getIdFranquia());
             ps.setString(3, venda.getDescricao());
             ps.setDouble(4, venda.getValor());
             ps.setString(5, venda.getData());
@@ -144,7 +144,7 @@ public class VendaDAO {
              PreparedStatement ps = conexao.prepareStatement(sql)) {
 
             ps.setInt(1, venda.getIdCliente());
-            ps.setInt(2, venda.getFranquiaId());
+            ps.setInt(2, venda.getIdFranquia()); 
             ps.setString(3, venda.getDescricao());
             ps.setDouble(4, venda.getValor());
             ps.setString(5, venda.getData());

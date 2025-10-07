@@ -7,8 +7,7 @@ const CheckInTela: React.FC = () => {
   const checkins = CHECKINS_FRANQUIA_A_MOCK;
 
   const handleCheckIn = () => {
-    // Lógica para registrar um novo check-in
-    alert("Funcionalidade de novo check-in a ser implementada!");
+    // Context ou API
   };
 
   return (

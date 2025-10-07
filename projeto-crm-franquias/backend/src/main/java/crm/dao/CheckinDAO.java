@@ -35,7 +35,7 @@ public class CheckinDAO {
 
             ps.setInt(1, checkin.getClienteId());
             ps.setInt(2, checkin.getUsuarioId());
-            ps.setInt(3, checkin.getFranquiaId());
+            ps.setInt(3, checkin.getIdFranquia());
             ps.setString(4, checkin.getData());
             ps.setString(5, checkin.getHora());
             ps.execute();
@@ -124,7 +124,7 @@ public class CheckinDAO {
 
             ps.setInt(1, checkin.getClienteId());
             ps.setInt(2, checkin.getUsuarioId());
-            ps.setInt(3, checkin.getFranquiaId());
+            ps.setInt(3, checkin.getIdFranquia());
             ps.setString(4, checkin.getData());
             ps.setString(5, checkin.getHora());
             ps.setInt(6, checkin.getId());
